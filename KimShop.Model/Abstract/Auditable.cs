@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KimShop.Model.Abstract
 {
-    public class Auditable : IAuditable
+    public abstract class Auditable
     {
         public DateTime? CreatedDate { get; set; }
 
