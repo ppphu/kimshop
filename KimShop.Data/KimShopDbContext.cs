@@ -3,9 +3,9 @@ using System.Data.Entity;
 
 namespace KimShop.Data
 {
-    public class KimShopDbContext :DbContext
+    public class KimShopDbContext : DbContext
     {
-        public KimShopDbContext():base("KimShopConnection")
+        public KimShopDbContext() : base("KimShopConnection")
         {
             Configuration.LazyLoadingEnabled = false;
         }
@@ -16,10 +16,10 @@ namespace KimShop.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<PostCategory> PostCategorys { get; set; }
+        public DbSet<PostCategory> PostCategories { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategorys { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Slide> Slides { get; set; }
         public DbSet<SupportOnline> SupportOnlines { get; set; }

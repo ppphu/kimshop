@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KimShop.Data.Infrastructure
 {
     public class Disposable : IDisposable
     {
         // Flag: Has Dispose already been called?
-        bool disposed = false;
+        private bool disposed = false;
 
         // Public implementation of Dispose pattern callable by consumers.
         public void Dispose()
@@ -17,7 +13,7 @@ namespace KimShop.Data.Infrastructure
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        
+
         // Protected implementation of Dispose pattern.
         private void Dispose(bool disposing)
         {
@@ -33,8 +29,8 @@ namespace KimShop.Data.Infrastructure
         // Overide this to dispose custom objects
         protected virtual void DisposeCore()
         {
-
         }
+
         // Distroy method
         ~Disposable()
         {

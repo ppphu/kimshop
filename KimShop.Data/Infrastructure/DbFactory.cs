@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KimShop.Data.Infrastructure
+﻿namespace KimShop.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        KimShopDbContext dbContext;
+        private KimShopDbContext dbContext;
+
         public KimShopDbContext Init()
         {
             return dbContext ?? (dbContext = new KimShopDbContext());
@@ -16,7 +11,7 @@ namespace KimShop.Data.Infrastructure
 
         protected override void DisposeCore()
         {
-            if (dbContext!=null)
+            if (dbContext != null)
             {
                 dbContext.Dispose();
             }

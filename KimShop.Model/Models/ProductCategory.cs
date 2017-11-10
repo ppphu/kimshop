@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KimShop.Model.Models
 {
+    [Table("ProductCategories")]
     public class ProductCategory : Auditable
     {
         [Key]

@@ -6,9 +6,10 @@ using System.Linq.Expressions;
 
 namespace KimShop.Data.Infrastructure
 {
-    public abstract class Repository<T> where T:class
+    public abstract class Repository<T> : IRepository<T> where T : class
     {
         #region Properties
+
         private KimShopDbContext dbContext;
         private readonly IDbSet<T> dbSet;
 
@@ -22,7 +23,8 @@ namespace KimShop.Data.Infrastructure
         {
             get { return dbContext ?? (dbContext = DbFactory.Init()); }
         }
-        #endregion
+
+        #endregion Properties
 
         protected Repository(IDbFactory dbFactory)
         {
@@ -31,42 +33,43 @@ namespace KimShop.Data.Infrastructure
         }
 
         #region Implementation
-        public virtual void Add(T entity)
+
+        public void Insert(T entity)
         {
             dbSet.Add(entity);
         }
 
-        public virtual void Update(T entity)
+        public void Delete(T entity)
+        {
+            dbSet.Remove(entity);
+        }
+
+        public void Update(T entity)
         {
             dbSet.Attach(entity);
             dbContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
-        {
-            dbSet.Remove(entity);
-        }
-
-        public virtual void DeleteMulti(Expression<Func<T, bool>> where)
+        public void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
 
-        public virtual T GetSingleById(int id)
+        public T GetSingleById(int id)
         {
             return dbSet.Find(id);
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
+        public IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
         {
             return dbSet.Where(where).ToList();
         }
 
-        public virtual int Count(Expression<Func<T, bool>> where)
+        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
         {
-            return dbSet.Count(where);
+            return GetAll(includes).FirstOrDefault(expression);
         }
 
         public IQueryable<T> GetAll(string[] includes = null)
@@ -82,12 +85,7 @@ namespace KimShop.Data.Infrastructure
             return dbContext.Set<T>().AsQueryable();
         }
 
-        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
-        {
-            return GetAll(includes).FirstOrDefault(expression);
-        }
-
-        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -101,7 +99,7 @@ namespace KimShop.Data.Infrastructure
             return dbContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        public IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
@@ -112,11 +110,11 @@ namespace KimShop.Data.Infrastructure
                 var query = dbContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
-                _resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
+                _resetSet = filter != null ? query.Where<T>(filter).AsQueryable() : query.AsQueryable();
             }
             else
             {
-                _resetSet = predicate != null ? dbContext.Set<T>().Where<T>(predicate).AsQueryable() : dbContext.Set<T>().AsQueryable();
+                _resetSet = filter != null ? dbContext.Set<T>().Where<T>(filter).AsQueryable() : dbContext.Set<T>().AsQueryable();
             }
 
             _resetSet = skipCount == 0 ? _resetSet.Take(size) : _resetSet.Skip(skipCount).Take(size);
@@ -124,10 +122,16 @@ namespace KimShop.Data.Infrastructure
             return _resetSet.AsQueryable();
         }
 
+        public int Count(Expression<Func<T, bool>> where)
+        {
+            return dbSet.Count(where);
+        }
+
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dbContext.Set<T>().Count<T>(predicate) > 0;
         }
-        #endregion
+
+        #endregion Implementation
     }
 }

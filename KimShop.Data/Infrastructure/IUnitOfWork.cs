@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KimShop.Data.Infrastructure
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        void Commit();
     }
 }
