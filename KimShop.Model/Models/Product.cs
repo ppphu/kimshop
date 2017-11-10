@@ -1,7 +1,6 @@
 ﻿using KimShop.Model.Abstract;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace KimShop.Model.Models
 {
@@ -30,7 +29,7 @@ namespace KimShop.Model.Models
         [MaxLength(256)]
         public string Image { get; set; }
 
-        [Column(TypeName ="xml")]
+        [Column(TypeName = "xml")]
         public string MoreImages { get; set; }
 
         [MaxLength(500)]
