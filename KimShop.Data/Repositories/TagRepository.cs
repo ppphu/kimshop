@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface ITagRepository
+    public interface ITagRepository : IRepository<Tag>
     {
     }
 

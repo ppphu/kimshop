@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface ISlideRepository
+    public interface ISlideRepository: IRepository<Slide>
     {
     }
 

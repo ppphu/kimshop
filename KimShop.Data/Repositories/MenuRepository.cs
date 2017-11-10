@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface IMenuRepository
+    public interface IMenuRepository : IRepository<Menu>
     {
     }
 

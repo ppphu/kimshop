@@ -44,6 +44,12 @@ namespace KimShop.Data.Infrastructure
             dbSet.Remove(entity);
         }
 
+        public void Delete(int id)
+        {
+            var entity = dbSet.Find(id);
+            dbSet.Remove(entity);
+        }
+
         public void Update(T entity)
         {
             dbSet.Attach(entity);

@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface IPostTagRepository
+    public interface IPostTagRepository : IRepository<PostTag>
     {
     }
 

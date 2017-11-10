@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface IOrderDetailRepository
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
     }
 

@@ -11,6 +11,8 @@ namespace KimShop.Data.Infrastructure
 
         void Delete(T entity);
 
+        void Delete(int id);
+
         void Update(T entity);
 
         void DeleteMulti(Expression<Func<T, bool>> where);

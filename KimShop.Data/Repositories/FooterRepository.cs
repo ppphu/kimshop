@@ -3,7 +3,7 @@ using KimShop.Model.Models;
 
 namespace KimShop.Data.Repositories
 {
-    public interface IFooterRepository
+    public interface IFooterRepository: IRepository<Footer>
     {
     }
 
