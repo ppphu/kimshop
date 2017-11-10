@@ -49,7 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Repository.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="KimShopDbContext.cs" />
+    <Compile Include="Migrations\201711091005136_InitialDB.cs" />
+    <Compile Include="Migrations\201711091005136_InitialDB.Designer.cs">
+      <DependentUpon>201711091005136_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -60,6 +75,15 @@
       <Project>{6488567c-1c73-466a-94ca-adcc0f9c82b8}</Project>
       <Name>KimShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KimShop.Model\KimShop.Model.csproj">
+      <Project>{803eac1b-5e02-462b-9ade-9bd14d6ac501}</Project>
+      <Name>KimShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711091005136_InitialDB.resx">
+      <DependentUpon>201711091005136_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

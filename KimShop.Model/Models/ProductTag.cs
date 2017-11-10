@@ -7,12 +7,12 @@ namespace KimShop.Model.Models
     public class ProductTag
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(Order = 1)]
         public int ProductID { get; set; }
 
         [Key]
         [MaxLength(50)]
-        [Column(TypeName = "varchar")]
+        [Column(TypeName = "varchar", Order = 2)]
         public string TagID { get; set; }
 
         [ForeignKey("ProductID")]
