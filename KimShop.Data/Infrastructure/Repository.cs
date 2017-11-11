@@ -33,8 +33,8 @@ namespace KimShop.Data.Infrastructure
         }
 
         #region Implementation
-
-        public void Insert(T entity)
+        
+        public void Add(T entity)
         {
             dbSet.Add(entity);
         }

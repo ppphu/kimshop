@@ -7,7 +7,7 @@ namespace KimShop.Data.Infrastructure
 {
     public interface IRepository<T> where T : class
     {
-        void Insert(T entity);
+        void Add(T entity);
 
         void Delete(T entity);
 

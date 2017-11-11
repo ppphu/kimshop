@@ -3,34 +3,41 @@ using KimShop.Data.Repositories;
 using KimShop.Model.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KimShop.Service
 {
     public interface IPostService
     {
-        void Insert(Post post);
+        void Add(Post post);
+
+        void Save();
 
         void Update(Post post);
+
         void Delete(int id);
+
         IEnumerable<Post> GetAll();
-        IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+
         Post GetById(int id);
-        IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow);
-        void SaveChanges();
+
+        IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+
+        IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
     }
+
     public class PostService : IPostService
     {
-        IPostRepository _postRepository;
-        IUnitOfWork _unitOfWork;
+        private IPostRepository _postRepository;
+        private IUnitOfWork _unitOfWork;
 
         public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
         }
+
         public void Delete(int id)
         {
             _postRepository.Delete(id);
@@ -41,10 +48,15 @@ namespace KimShop.Service
             return _postRepository.GetAll(new string[] { "PostCategory" });
         }
 
-        public IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow)
+        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
+        }
+
+        public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
             // TODO: Select all post by tag.
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
@@ -57,12 +69,12 @@ namespace KimShop.Service
             return _postRepository.GetSingleById(id);
         }
 
-        public void Insert(Post post)
+        public void Add(Post post)
         {
-            _postRepository.Insert(post);
+            _postRepository.Add(post);
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _unitOfWork.Commit();
         }
