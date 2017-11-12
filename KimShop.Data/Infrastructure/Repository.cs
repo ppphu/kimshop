@@ -34,20 +34,20 @@ namespace KimShop.Data.Infrastructure
 
         #region Implementation
         
-        public void Add(T entity)
+        public T Add(T entity)
         {
-            dbSet.Add(entity);
+            return dbSet.Add(entity);
         }
 
-        public void Delete(T entity)
+        public T Delete(T entity)
         {
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
 
-        public void Delete(int id)
+        public T Delete(int id)
         {
             var entity = dbSet.Find(id);
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
 
         public void Update(T entity)
@@ -75,10 +75,17 @@ namespace KimShop.Data.Infrastructure
 
         public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
         {
-            return GetAll(includes).FirstOrDefault(expression);
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dbContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault(expression);
+            }
+            return dbContext.Set<T>().FirstOrDefault(expression);
         }
 
-        public IQueryable<T> GetAll(string[] includes = null)
+        public IEnumerable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -91,7 +98,7 @@ namespace KimShop.Data.Infrastructure
             return dbContext.Set<T>().AsQueryable();
         }
 
-        public IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -105,7 +112,7 @@ namespace KimShop.Data.Infrastructure
             return dbContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null)
+        public IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
