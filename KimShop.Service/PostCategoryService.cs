@@ -14,6 +14,8 @@ namespace KimShop.Service
 
         void Delete(int id);
 
+        void Save();
+
         IEnumerable<PostCategory> GetAll();
 
         IEnumerable<PostCategory> GetAllByParentId(int parentID);
@@ -42,6 +44,10 @@ namespace KimShop.Service
             _iPostCategoryRepository.Delete(id);
         }
 
+        public void Save()
+        {
+            _iUnitOfWork.Commit();
+        }
         public IEnumerable<PostCategory> GetAll()
         {
             return _iPostCategoryRepository.GetAll();
