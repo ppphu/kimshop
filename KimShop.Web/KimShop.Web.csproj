@@ -194,6 +194,9 @@
     <Compile Include="Api\MenuGroupController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\PostController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
+    <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\StatisticController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -201,6 +204,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,12 +217,18 @@
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\plugins\angular\angular-csp.css" />
+    <Content Include="Scripts\plugins\angular\angular.js" />
+    <Content Include="Scripts\plugins\angular\angular.min.js" />
+    <Content Include="Scripts\plugins\angular\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -231,7 +241,6 @@
   <ItemGroup>
     <Folder Include="Assets\admin\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Scripts\plugins\" />
     <Folder Include="Scripts\spa\" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +268,22 @@
       <Project>{de59635a-2d3c-4c94-8159-1b979c9e1d01}</Project>
       <Name>KimShop.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\plugins\angular\.bower.json" />
+    <Content Include="Scripts\plugins\angular\angular.min.js.gzip" />
+    <Content Include="Scripts\plugins\angular\angular.min.js.map" />
+    <Content Include="Scripts\plugins\angular\bower.json" />
+    <Content Include="Scripts\plugins\angular\LICENSE.md" />
+    <Content Include="Scripts\plugins\angular\package.json" />
+    <Content Include="Scripts\plugins\angular\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
