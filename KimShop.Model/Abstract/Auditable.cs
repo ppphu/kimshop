@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KimShop.Model.Abstract
 {
-    public abstract class Auditable
+    public abstract class Auditable : IAuditable
     {
         public DateTime? CreatedDate { get; set; }
 
@@ -16,10 +16,10 @@ namespace KimShop.Model.Abstract
         public string UpdatedBy { get; set; }
 
         [MaxLength(256)]
-        public string MetaDescription { get; set; }
+        public string MetaKeyword { get; set; }
 
         [MaxLength(256)]
-        public string MetaKeyword { get; set; }
+        public string MetaDescription { get; set; }
 
         public bool Status { get; set; }
     }

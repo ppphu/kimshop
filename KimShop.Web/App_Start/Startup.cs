@@ -4,10 +4,14 @@ using Autofac.Integration.WebApi;
 using KimShop.Data;
 using KimShop.Data.Infrastructure;
 using KimShop.Data.Repositories;
+using KimShop.Model.Models;
 using KimShop.Service;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using System.Reflection;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -15,7 +19,7 @@ using System.Web.Mvc;
 
 namespace KimShop.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
@@ -37,6 +41,13 @@ namespace KimShop.Web.App_Start
 
             builder.RegisterType<KimShopDbContext>().AsSelf().InstancePerRequest();
 
+            // Asp.Net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
@@ -50,6 +61,7 @@ namespace KimShop.Web.App_Start
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
+            // Set the WebApi DependencyResolver
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container);
         }
     }

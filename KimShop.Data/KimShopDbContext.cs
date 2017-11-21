@@ -1,9 +1,10 @@
 ﻿using KimShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace KimShop.Data
 {
-    public class KimShopDbContext : DbContext
+    public class KimShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public KimShopDbContext() : base("KimShopConnection")
         {
@@ -30,7 +31,14 @@ namespace KimShop.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i=> new { i.UserId,i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
             base.OnModelCreating(modelBuilder);
+        }
+
+        public static KimShopDbContext Create()
+        {
+            return new KimShopDbContext();
         }
     }
 }
