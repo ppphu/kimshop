@@ -10,12 +10,26 @@ namespace KimShop.Web.Mappings
         {
             Mapper.Initialize(cfg =>
             {
+                cfg.CreateMap<ProductCategory, ProductCategoryViewModel>();
+                cfg.CreateMap<Product, ProductViewModel>();
+                cfg.CreateMap<ProductTag, ProductTagViewModel>();
+
                 cfg.CreateMap<PostViewModel, Post>();
                 cfg.CreateMap<PostCategoryViewModel, PostCategory>();
-                cfg.CreateMap<TagViewModel, Tag>();
                 cfg.CreateMap<PostTagViewModel, PostTag>();
+                cfg.CreateMap<TagViewModel, Tag>();
+
                 cfg.CreateMap<MenuViewModel, Menu>();
                 cfg.CreateMap<MenuGroupViewModel, MenuGroup>();
+
+                //cfg.CreateMap<ProductTag, ProductTagViewModel>();
+                //cfg.CreateMap<Footer, FooterViewModel>();
+                //cfg.CreateMap<Slide, SlideViewModel>();
+                //cfg.CreateMap<Page, PageViewModel>();
+                //cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
+                //cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
+                //cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+                //cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
             });
         }
     }

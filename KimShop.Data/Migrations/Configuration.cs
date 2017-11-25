@@ -1,9 +1,10 @@
-namespace KimShop.Data.Migrations
+﻿namespace KimShop.Data.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -14,14 +15,15 @@ namespace KimShop.Data.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(KimShop.Data.KimShopDbContext context)
+        protected override void Seed(KimShopDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
 
-            CreateUser(context);
+            //CreateUser(context);
+            CreateProductCategorySample(context);
         }
 
         private void CreateUser(KimShopDbContext context)
@@ -51,6 +53,22 @@ namespace KimShop.Data.Migrations
                 var adminUser = manager.FindByEmail("tedu.international@gmail.com");
 
                 manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            }
+        }
+
+        private void CreateProductCategorySample(KimShopDbContext context)
+        {
+            if (context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> productCategories = new List<ProductCategory>()
+                {
+                    new ProductCategory() {Name="Điên lạnh", Alias="dien-lanh",Status=true },
+                    new ProductCategory() {Name="Viễn thông", Alias="vien-thong",Status=true },
+                    new ProductCategory() {Name="Đồ gia dụng", Alias="do-gia-dung",Status=true },
+                    new ProductCategory() {Name="Mỹ phẩm", Alias="my-pham",Status=true },
+                };
+                context.ProductCategories.AddRange(productCategories);
+                context.SaveChanges();
             }
         }
     }

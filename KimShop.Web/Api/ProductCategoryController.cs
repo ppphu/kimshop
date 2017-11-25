@@ -15,7 +15,7 @@ using System.Web.Script.Serialization;
 namespace KimShop.Web.Api
 {
     [RoutePrefix("api/productcategory")]
-    [Authorize]
+    //[Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Initialize
@@ -45,47 +45,47 @@ namespace KimShop.Web.Api
             });
         }
 
-        //[Route("getbyid/{id:int}")]
-        //[HttpGet]
-        //public HttpResponseMessage GetById(HttpRequestMessage request, int id)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        var model = _productCategoryService.GetById(id);
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
 
-        //        var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+                var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
 
-        //        var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
 
-        //[Route("getall")]
-        //[HttpGet]
-        //public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        int totalRow = 0;
-        //        var model = _productCategoryService.GetAll(keyword);
+        [Route("getall")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                var model = _productCategoryService.GetAll(keyword);
 
-        //        totalRow = model.Count();
-        //        var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize).ToList();
 
-        //        var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);//(query);
 
-        //        var paginationSet = new PaginationSet<ProductCategoryViewModel>()
-        //        {
-        //            Items = responseData,
-        //            Page = page,
-        //            TotalCount = totalRow,
-        //            TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
-        //        };
-        //        var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
-        //        return response;
-        //    });
-        //}
+                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
 
         //[Route("create")]
         //[HttpPost]

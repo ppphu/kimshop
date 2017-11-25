@@ -1,7 +1,12 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
 (function () {
-    angular.module('kimshop', ['kimshop.products', 'kimshop.common']).config(config);
+    angular.module('kimshop',
+        [
+            'kimshop.products',
+            'kimshop.product_categories',
+            'kimshop.common'
+        ]).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
