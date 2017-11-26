@@ -73,7 +73,7 @@ namespace KimShop.Web.Api
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize).ToList();
 
-                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);//(query);
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
 
                 var paginationSet = new PaginationSet<ProductCategoryViewModel>()
                 {
