@@ -46,8 +46,8 @@ namespace KimShop.Web.Api
             });
         }
 
-        [Route("getbyid/{id:int}")]
         [HttpGet]
+        [Route("getbyid/{id:int}")]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -116,52 +116,52 @@ namespace KimShop.Web.Api
             });
         }
 
-        //[Route("update")]
-        //[HttpPut]
-        //[AllowAnonymous]
-        //public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        if (!ModelState.IsValid)
-        //        {
-        //            response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-        //        }
-        //        else
-        //        {
-        //            var dbProductCategory = _productCategoryService.GetById(productCategoryVm.ID);
+        [HttpPut]
+        [AllowAnonymous]
+        [Route("update")]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbProductCategory = _productCategoryService.GetById(productCategoryVm.ID);
 
-        //            dbProductCategory.UpdateProductCategory(productCategoryVm);
-        //            dbProductCategory.UpdatedDate = DateTime.Now;
+                    dbProductCategory.UpdateProductCategory(productCategoryVm);
+                    dbProductCategory.UpdatedDate = DateTime.Now;
 
-        //            _productCategoryService.Update(dbProductCategory);
-        //            try
-        //            {
-        //                _productCategoryService.Save();
-        //            }
-        //            catch (DbEntityValidationException e)
-        //            {
-        //                foreach (var eve in e.EntityValidationErrors)
-        //                {
-        //                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-        //                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-        //                    foreach (var ve in eve.ValidationErrors)
-        //                    {
-        //                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-        //                            ve.PropertyName, ve.ErrorMessage);
-        //                    }
-        //                }
-        //                throw;
-        //            }
+                    _productCategoryService.Update(dbProductCategory);
+                    try
+                    {
+                        _productCategoryService.Save();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                        throw;
+                    }
 
-        //            var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
-        //            response = request.CreateResponse(HttpStatusCode.Created, responseData);
-        //        }
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
 
         //[Route("delete")]
         //[HttpDelete]

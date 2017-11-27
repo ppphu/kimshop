@@ -53,7 +53,7 @@
                                 <td>{{item.Description}}</td>
                                 <td><span ng-class="{'label label-success':item.Status==true,'label label-danger':item.Status==false}">{{item.Status|statusFilter}}</span></td>
                                 <td>
-                                    <button class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o"></i></button> |
+                                    <button class="btn btn-xs btn-primary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button> |
                                     <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
