@@ -14,16 +14,22 @@
 <section class="content">
     <!-- Default box -->
     <div class="box">
-        <div class="col-xs-12">
+        <!--<div class="col-xs-12">-->
             <div class="box-header">
-                <!--<h3 class="box-title">Phong phu</h3>-->
-                <div class="box-tools">
-                    <div class="input-group input-group-sm" style="width: 30%;">
-                        <input type="text" ng-model="keyword" name="table_search" class="form-control pull-right" placeholder="Gõ từ khóa">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default" ng-click="search()"><i class="fa fa-search"></i></button>
+                <div class="row">
+                    <!--<div class="col-xs-12">-->
+                        <div class="box-tools col-md-6">
+                            <div class="input-group input-group-sm">
+                                <input type="text" ng-model="keyword" name="table_search" class="form-control pull-right" placeholder="Gõ từ khóa">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default" ng-click="search()"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary" ui-sref="add_product_category">Thêm mới</button>
+                        </div>
+                    <!--</div>-->
                 </div>
             </div>
             <div class="box-body table-responsive no-padding">
@@ -62,7 +68,7 @@
                 <div><span class="pull-right" style="font-weight:bold;font-size:medium;color:darkblue">Trang: {{page + 1}} tổng số bản ghi: {{totalCount}}</span></div>
             </div>
             <!-- /.box-footer-->
-        </div>
+        <!--</div>-->
     </div>
     <!-- /.box -->
 </section>

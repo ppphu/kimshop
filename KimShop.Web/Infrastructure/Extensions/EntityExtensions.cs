@@ -46,5 +46,25 @@ namespace KimShop.Web.Infrastructure.Extensions
             post.MetaKeyword = postVm.MetaKeyword;
             post.Status = postVm.Status;
         }
+
+        public static void UpdateProductCategory(this ProductCategory category, ProductCategoryViewModel categoryVm)
+        {
+            category.ID = categoryVm.ID;
+            category.Name = categoryVm.Name;
+            category.Alias = categoryVm.Alias;
+            category.Image = categoryVm.Image;
+            category.Description = categoryVm.Description;
+            category.ParentID = categoryVm.ParentID;
+            category.DisplayOrder = categoryVm.DisplayOrder;
+            category.HomeFlag = categoryVm.HomeFlag;
+
+            category.CreatedDate = categoryVm.CreatedDate;
+            category.CreatedBy = categoryVm.CreatedBy;
+            category.UpdatedDate = categoryVm.UpdatedDate;
+            category.UpdatedBy = categoryVm.UpdatedBy;
+            category.MetaDescription = categoryVm.MetaDescription;
+            category.MetaKeyword = categoryVm.MetaKeyword;
+            category.Status = categoryVm.Status;
+        }
     }
 }

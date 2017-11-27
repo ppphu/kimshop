@@ -2,6 +2,7 @@
 using KimShop.Model.Models;
 using KimShop.Service;
 using KimShop.Web.Infrastructure.Core;
+using KimShop.Web.Infrastructure.Extensions;
 using KimShop.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -61,8 +62,8 @@ namespace KimShop.Web.Api
             });
         }
 
-        [Route("getall")]
         [HttpGet]
+        [Route("getall")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -87,33 +88,33 @@ namespace KimShop.Web.Api
             });
         }
 
-        //[Route("create")]
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        if (!ModelState.IsValid)
-        //        {
-        //            response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-        //        }
-        //        else
-        //        {
-        //            var newProductCategory = new ProductCategory();
-        //            newProductCategory.UpdateProductCategory(productCategoryVm);
-        //            newProductCategory.CreatedDate = DateTime.Now;
-        //            _productCategoryService.Add(newProductCategory);
-        //            _productCategoryService.Save();
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("create")]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newProductCategory = new ProductCategory();
+                    newProductCategory.UpdateProductCategory(productCategoryVm);
+                    newProductCategory.CreatedDate = DateTime.Now;
+                    _productCategoryService.Add(newProductCategory);
+                    _productCategoryService.Save();
 
-        //            var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
-        //            response = request.CreateResponse(HttpStatusCode.Created, responseData);
-        //        }
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
 
         //[Route("update")]
         //[HttpPut]
