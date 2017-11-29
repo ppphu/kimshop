@@ -1,10 +1,9 @@
 ﻿(function (app) {
     app.controller('productCategoryEditController', productCategoryEditController);
-    productCategoryEditController.$inject = ['$scope', '$state', '$stateParams', 'apiService', 'notificationService','commonService'];
-    function productCategoryEditController($scope, $state, $stateParams, apiService, notificationService,commonService) {
+    productCategoryEditController.$inject = ['$scope', '$state', '$stateParams', 'apiService', 'notificationService', 'commonService'];
+    function productCategoryEditController($scope, $state, $stateParams, apiService, notificationService, commonService) {
         $scope.productCategory = {
-            CreatedDate: new Date(),
-            Status: true
+            UpdatedDate: new Date()
         };
 
         $scope.UpdateProductCategory = UpdateProductCategory;
@@ -24,7 +23,7 @@
         }
 
         function loadProductCategoryDetail() {
-            apiService.get('api/productcategory/getbyid/' + $stateParams.id,null, function (result) {
+            apiService.get('api/productcategory/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.productCategory = result.data;
             }), function (error) {
                 notificationService.displayError(error.data);

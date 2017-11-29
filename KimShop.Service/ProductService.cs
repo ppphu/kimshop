@@ -65,33 +65,33 @@ namespace KimShop.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public Product Add(Product p)
+        public Product Add(Product product)
         {
-            return null;
-            //var product = _productRepository.Add(p);
-            //_unitOfWork.Commit();
-            //if (!string.IsNullOrEmpty(p.Tags))
-            //{
-            //    string[] tags = p.Tags.Split(',');
-            //    for (var i = 0; i < tags.Length; i++)
-            //    {
-            //        var tagId = StringHelper.ToUnsignString(tags[i]);
-            //        if (_tagRepository.Count(x => x.ID == tagId) == 0)
-            //        {
-            //            Tag tag = new Tag();
-            //            tag.ID = tagId;
-            //            tag.Name = tags[i];
-            //            tag.Type = Constants.ProductTag;
-            //            _tagRepository.Add(tag);
-            //        }
+            var p = _productRepository.Add(product);
+            _unitOfWork.Commit();
+            if (!string.IsNullOrEmpty(product.Tags))
+            {
+                string[] tags = product.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = Constants.ProductTag;
+                        _tagRepository.Add(tag);
+                    }
 
-            //        ProductTag productTag = new ProductTag();
-            //        productTag.ProductID = p.ID;
-            //        productTag.TagID = tagId;
-            //        _productTagRepository.Add(productTag);
-            //    }
-            //}
-            //return product;
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+                _unitOfWork.Commit();
+            }
+            return p;
         }
 
         public Product Delete(int id)
@@ -124,28 +124,30 @@ namespace KimShop.Service
 
         public void Update(Product Product)
         {
-            //_productRepository.Update(Product);
-            //if (!string.IsNullOrEmpty(Product.Tags))
-            //{
-            //    string[] tags = Product.Tags.Split(',');
-            //    for (var i = 0; i < tags.Length; i++)
-            //    {
-            //        var tagId = StringHelper.ToUnsignString(tags[i]);
-            //        if (_tagRepository.Count(x => x.ID == tagId) == 0)
-            //        {
-            //            Tag tag = new Tag();
-            //            tag.ID = tagId;
-            //            tag.Name = tags[i];
-            //            tag.Type = Constants.ProductTag;
-            //            _tagRepository.Add(tag);
-            //        }
-            //        _productTagRepository.DeleteMulti(x => x.ProductID == Product.ID);
-            //        ProductTag productTag = new ProductTag();
-            //        productTag.ProductID = Product.ID;
-            //        productTag.TagID = tagId;
-            //        _productTagRepository.Add(productTag);
-            //    }
-            //}
+            _productRepository.Update(Product);
+            if (!string.IsNullOrEmpty(Product.Tags))
+            {
+                string[] tags = Product.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(x => x.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = Constants.ProductTag;
+                        _tagRepository.Add(tag);
+                    }
+                    // Xóa đi product tag cũ đi để sữa lại.
+                    _productTagRepository.DeleteMulti(x => x.ProductID == Product.ID);
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = Product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+            }
+            _unitOfWork.Commit();
         }
 
         public IEnumerable<Product> GetLastest(int top)

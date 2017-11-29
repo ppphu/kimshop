@@ -32,7 +32,7 @@
                             <div class="col-sm-10">
                                 <input type="text" name="name" ng-maxlength="256" required ng-change="GetSeoTitle()" ng-model="product.Name" class="form-control" placeholder="Nhập tên sản phẩm.">
                                 <span ng-show="frmAddProduct.name.$invalid" class="text-danger">* Phải nhập vào tên sản phẩm.</span>
-                                <span ng-show="frmAddProductCategory.name.$error.maxlength" class="text-danger">* Tên sản phẩm không quá 256 ký tự.</span>
+                                <span ng-show="frmAddProduct.name.$error.maxlength" class="text-danger">* Tên sản phẩm không quá 256 ký tự.</span>
                             </div>
                         </div>
 
@@ -91,7 +91,7 @@
                             <div class="col-sm-10">
                                 <input type="text" name="image" ng-maxlength="256" ng-model="product.Image" class="form-control">
                                 <span ng-show="frmAddProduct.image.$error.maxlength" class="text-danger">*Tên ảnh không được quá 256 ký tự.</span>
-                                <button class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+                                <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
                             </div>
                         </div>
 
@@ -100,6 +100,13 @@
                             <div class="col-sm-10">
                                 <textarea name="content" ng-maxlength="256" ckeditor ="ckeditorOptions" ng-model="product.Content" class="form-control" placeholder="Nhập mô tả cho sản phẩm."></textarea>
                                 <span ng-show="frmAddProduct.content.$error.maxlength" class="text-danger">*Mô tả sản phẩm không quá 256 ký tự.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tags</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="tag" ng-model="product.Tags" class="form-control" placeholder="Nhập vào tags.">
                             </div>
                         </div>
 

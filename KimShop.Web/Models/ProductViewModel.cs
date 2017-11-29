@@ -21,6 +21,7 @@ namespace KimShop.Web.Models
         public bool? HomeFlag { get; set; }
         public bool? HotFlag { get; set; }
         public int? ViewCount { get; set; }
+        public string Tags { get; set; }
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
 
         public DateTime? CreatedDate { get; set; }
