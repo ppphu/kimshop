@@ -38,6 +38,6 @@
             displayWarning: displayWarning,
             displayError: displayError,
             displayInfo: displayInfo
-        }
+        };
     }
 })(angular.module('kimshop.common'));

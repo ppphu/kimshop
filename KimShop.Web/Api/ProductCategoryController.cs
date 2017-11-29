@@ -163,58 +163,58 @@ namespace KimShop.Web.Api
             });
         }
 
-        //[Route("delete")]
-        //[HttpDelete]
-        //[AllowAnonymous]
-        //public HttpResponseMessage Delete(HttpRequestMessage request, int id)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        if (!ModelState.IsValid)
-        //        {
-        //            response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-        //        }
-        //        else
-        //        {
-        //            var oldProductCategory = _productCategoryService.Delete(id);
-        //            _productCategoryService.Save();
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("delete")]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
 
-        //            var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
-        //            response = request.CreateResponse(HttpStatusCode.Created, responseData);
-        //        }
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
 
-        //[Route("deletemulti")]
-        //[HttpDelete]
-        //[AllowAnonymous]
-        //public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        HttpResponseMessage response = null;
-        //        if (!ModelState.IsValid)
-        //        {
-        //            response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-        //        }
-        //        else
-        //        {
-        //            var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
-        //            foreach (var item in listProductCategory)
-        //            {
-        //                _productCategoryService.Delete(item);
-        //            }
+        [HttpDelete]
+        [AllowAnonymous]
+        [Route("deletemulti")]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach (var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
 
-        //            _productCategoryService.Save();
+                    _productCategoryService.Save();
 
-        //            response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
-        //        }
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
+                }
 
-        //        return response;
-        //    });
-        //}
+                return response;
+            });
+        }
     }
 }
