@@ -3,6 +3,7 @@
     productEditController.$inject = ['$scope', '$state','$stateParams', 'apiService', 'notificationService', 'commonService'];
     function productEditController($scope, $state, $stateParams, apiService, notificationService, commonService) {
         $scope.product = {};
+        $scope.moreImages = [];
 
         $scope.UpdateProduct = UpdateProduct;
         $scope.GetSeoTitle = GetSeoTitle;
@@ -11,21 +12,22 @@
         $scope.ckeditorOptions = {
             language: 'vi',
             height: '200px'
-        }
+        };
 
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
                     $scope.product.Image = fileUrl;
-                })
-            }
+                });
+            };
             finder.popup();
-        }
+        };
 
         function getProductDetail() {
             apiService.get('api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                $scope.moreImages = JSON.parse($scope.product.MoreImages);
             }), function (error) {
                 notificationService.displayError(error.data);
             };
@@ -36,6 +38,7 @@
         }
 
         function UpdateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.put('api/product/update', $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được cập nhật!');
                 $state.go('products');
@@ -51,6 +54,17 @@
                 console.log('Cannot get product category list.');
             });
         }
+
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                });
+            };
+            finder.popup();
+        };
+
         getProductDetail();
         $scope.getProductCategories();
     }
