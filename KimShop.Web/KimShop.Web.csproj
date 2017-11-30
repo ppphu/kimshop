@@ -234,6 +234,9 @@
     <Content Include="App\app.js" />
     <Content Include="App\components\home\homeController.js" />
     <Content Include="App\components\home\homeView.html" />
+    <Content Include="App\components\home\rootController.js" />
+    <Content Include="App\components\login\loginController.js" />
+    <Content Include="App\components\login\loginView.html" />
     <Content Include="App\components\products\products.module.js" />
     <Content Include="App\components\products\productAddController.js" />
     <Content Include="App\components\products\productAddView.html" />
@@ -255,6 +258,7 @@
     <Content Include="App\shared\services\apiService.js" />
     <Content Include="App\shared\services\commonService.js" />
     <Content Include="App\shared\services\notificationService.js" />
+    <Content Include="App\shared\views\baseView.html" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\alt\AdminLTE-bootstrap-social.css" />
@@ -5651,6 +5655,10 @@
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Libs\CKFinder.dll" />
+    <Content Include="UploadedFiles\files\Bad_Luck_Brian.jpg" />
+    <Content Include="UploadedFiles\images\21601.png" />
+    <Content Include="UploadedFiles\images\hinh02.png" />
+    <Content Include="UploadedFiles\images\Jobs-Logo.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -5667,7 +5675,6 @@
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
