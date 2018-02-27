@@ -1,4 +1,5 @@
 ﻿using KimShop.Model.Abstract;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,8 @@ namespace KimShop.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { get; set; }
+
+        public int Quantity { get; set; }
 
         public decimal Price { get; set; }
 
@@ -50,5 +53,7 @@ namespace KimShop.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { get; set; }
+
+        public virtual IEnumerable<ProductTag> ProductTags { get; set; }
     }
 }

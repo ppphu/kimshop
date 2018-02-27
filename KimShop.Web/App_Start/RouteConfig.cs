@@ -10,9 +10,59 @@ namespace KimShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "About",
+                url: "gioi-thieu.html",
+                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "dang-nhap.html",
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Product Category",
+                url: "{alias}.pc-{id}.html",
+                defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Product Detail",
+                url: "{alias}.p-{productId}.html",
+                defaults: new { controller = "Product", action = "Detail", productId = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Search",
+               url: "tim-kiem.html",
+               defaults: new { controller = "Product", action = "Search", productId = UrlParameter.Optional },
+               namespaces: new string[] { "KimShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
+               name: "TagList",
+               url: "tag/{tagid}.html",
+               defaults: new { controller = "Product", action = "ListByTag", tagid = UrlParameter.Optional },
+               namespaces: new string[] { "KimShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
+              name: "Page",
+              url: "trang/{alias}.html",
+              defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
+              namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
             );
         }
     }

@@ -1,0 +1,24 @@
+﻿.tag h5{
+	font-size: 1.1em;
+	color: #777;
+	margin-bottom: 10px;
+	text-shadow: 0 1px 0 #ffffff;
+}
+.taglist{
+	float:left;
+}
+.taglist li {
+	display: inline-block;
+	margin: 5px 6px;
+}
+.taglist li a {
+	padding: 9px;
+	display: inline;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+.taglist li a:hover{
+    color:blue;
+}

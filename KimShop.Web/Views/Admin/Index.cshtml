@@ -16,9 +16,12 @@
     <link href="~/Assets/admin/libs/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <!-- Theme style -->
     <link href="~/Assets/admin/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.css" rel="stylesheet" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="~/Assets/admin/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!-- Css thêm riêng cho phần chọn ảnh -->
+    <link href="~/Assets/admin/css/ChooseImage.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,6 +56,8 @@
     <script src="~/Assets/admin/libs/ckfinder/ckfinder.js"></script>
     <script src="~/Assets/admin/libs/ngBootbox/ngBootbox.js"></script>
     <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
+    <script src="~/Assets/admin/libs/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="~/Assets/admin/libs/angular-loading-bar/src/loading-bar.js"></script>
 
     <script src="~/App/shared/modules/kimshop.common.js"></script>
     <script src="~/App/shared/filters/statusFilter.js"></script>
@@ -60,6 +65,9 @@
     <script src="~/App/shared/directives/pagerDirective.js"></script>
     <script src="~/App/shared/services/notificationService.js"></script>
     <script src="~/App/shared/services/commonService.js"></script>
+    <script src="~/App/shared/services/authData.js"></script>
+    <script src="~/App/shared/services/authenticationService.js"></script>
+    <script src="~/App/shared/services/loginService.js"></script>
 
     <script src="~/App/app.js"></script>
     <script src="~/App/components/home/homeController.js"></script>
@@ -76,6 +84,10 @@
     <script src="~/App/components/product_categories/productCategoryAddController.js"></script>
     <script src="~/App/components/product_categories/productCategoryEditController.js"></script>
     
-    
+    <script src="~/App/components/app_groups/appGroups.module.js"></script>
+    <script src="~/App/components/app_groups/appGroupListController.js"></script>
+    <script src="~/App/components/app_groups/appGroupAddController.js"></script>
+    <script src="~/App/components/app_groups/appGroupEditController.js"></script>
+
 </body>
 </html>

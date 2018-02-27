@@ -14,6 +14,16 @@
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
         }
 
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.productCategory.Image = fileUrl;
+                });
+            };
+            finder.popup();
+        };
+
         function AddProductCategory() {
             apiService.post('api/productcategory/create', $scope.productCategory, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm!');

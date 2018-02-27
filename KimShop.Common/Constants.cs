@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KimShop.Common
+﻿namespace KimShop.Common
 {
     public class Constants
     {
@@ -19,6 +13,5 @@ namespace KimShop.Common
         public const string HomeMetaDescription = "HomeMetaDescription";
 
         public const string Administrator = "Administrator";
-
     }
 }

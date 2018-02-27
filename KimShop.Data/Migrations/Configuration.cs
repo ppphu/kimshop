@@ -8,7 +8,7 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<KimShop.Data.KimShopDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<KimShopDbContext>
     {
         public Configuration()
         {
@@ -23,26 +23,29 @@
             //  to avoid creating duplicate seed data.
 
             //CreateUser(context);
-            CreateProductCategorySample(context);
+            //CreateSlide(context);
+            //CreateProductCategorySample(context);
+            //CreatePage(context);
         }
 
         private void CreateUser(KimShopDbContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new KimShopDbContext()));
+            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new KimShopDbContext()));
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new KimShopDbContext()));
 
-            var user = new ApplicationUser()
+            var user = new AppUser()
             {
-                UserName = "tedu",
-                Email = "tedu.international@gmail.com",
+                UserName = "phu",
+                Email = "ppphu1302@gmail.com",
                 EmailConfirmed = true,
-                DateOfBirth = DateTime.Now,
-                FullName = "Technology Education"
+                Birthday = DateTime.Now,
+                FullName = "Phương Phong Phú",
+               
             };
-            if (manager.Users.Count(x => x.UserName == "tedu") == 0)
+            if (manager.Users.Count(x => x.UserName == "phu") == 0)
             {
-                manager.Create(user, "123654$");
+                manager.Create(user, "12345");
 
                 if (!roleManager.Roles.Any())
                 {
@@ -50,7 +53,7 @@
                     roleManager.Create(new IdentityRole { Name = "User" });
                 }
 
-                var adminUser = manager.FindByEmail("tedu.international@gmail.com");
+                var adminUser = manager.FindByEmail("ppphu1302@gmail.com");
 
                 manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             }
@@ -68,6 +71,64 @@
                     new ProductCategory() {Name="Mỹ phẩm", Alias="my-pham",Status=true },
                 };
                 context.ProductCategories.AddRange(productCategories);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateSlide(KimShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> slides = new List<Slide>()
+                {
+                    new Slide()
+                    {
+                        Name = "Slide 01",
+                        DisplayOrder = 1,
+                        Url= "#",
+                        Image="/Assets/client/images/bag.jpg",
+                        Status = true,
+                        Description = @"<h2>GIẢM GIÁ 50%</h2>
+								<label> CHO TẤT CẢ CÁC MẶT HÀNG <b>TRÊN ĐƠN HÀNG</b></label>
+								<p> Nhân dịp ngày thứ 6 đen tối, giảm giá các mặt hàng trong tháng giảm giá </p>
+								<span class=""on-get"">MUA NGAY</span>"
+                    },
+                    new Slide()
+                    {
+                        Name = "Slide 02",
+                        DisplayOrder = 2,
+                        Url = "#",
+                        Image = "/Assets/client/images/bag1.jpg",
+                        Status = true,
+                        Description = @"<h2>GIẢM GIÁ 50%</h2>
+								<label> CHO TẤT CẢ CÁC MẶT HÀNG <b>TRÊN ĐƠN HÀNG</b></label>
+								<p> Nhân dịp ngày thứ 6 đen tối, giảm giá các mặt hàng trong tháng giảm giá </p>
+								<span class=""on-get"">MUA NGAY</span>"
+                    }
+                };
+                context.Slides.AddRange(slides);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreatePage(KimShopDbContext context)
+        {
+            if (context.Pages.Count() == 0)
+            {
+                var page = new Page()
+                {
+                    Name="First page",
+                    Alias = "gioi-thieu",
+                    Content = @"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
+                                ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+                                sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
+                                quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
+                                reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+                    Status = true
+                };
+                context.Pages.Add(page);
                 context.SaveChanges();
             }
         }

@@ -1,0 +1,54 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1> THÊM MỚI NHÓM </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="app_groups"> Danh mục nhóm </a></li>
+        <li class="active"> Thêm mới </li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="col-xs-12">
+
+            <!--/.col (left) -->
+            <!-- right column -->
+            <!--<div class="col-md-6">-->
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thêm mới</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" novalidate name="frmAddAppGroup" role="form" ng-submit="AddAppGroup()">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tên nhóm</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="name" class="form-control" required reqired-message="Tên nhóm bắt buộc." ng-model="group.Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <label ng-repeat="role in roles">
+                                    <input type="checkbox" checklist-model="group.Roles" checklist-value="role"> {{role.Description}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" ng-disabled="frmAddAppGroup.$invalid" class="btn btn-success pull-right" style="margin-left:8px;">LƯU</button>
+                        <button ui-sref="app_groups" class="btn btn-danger pull-right" >HỦY</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</section>

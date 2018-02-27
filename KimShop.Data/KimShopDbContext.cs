@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace KimShop.Data
 {
-    public class KimShopDbContext : IdentityDbContext<ApplicationUser>
+    public class KimShopDbContext : IdentityDbContext<AppUser>
     {
         public KimShopDbContext() : base("KimShopConnection")
         {
@@ -29,11 +29,20 @@ namespace KimShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<Error> Errors { get; set; }
 
+        public DbSet<AppGroup> AppGroups { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<AppRoleGroup> AppRoleGroups { get; set; }
+        public DbSet<AppUserGroup> AppUserGroups { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserRole>().HasKey(i=> new { i.UserId,i.RoleId });
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AppUser>().ToTable("AppUsers");
+            modelBuilder.Entity<IdentityRole>().ToTable("AppRoles");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("AppUserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("AppUserRoles");
         }
 
         public static KimShopDbContext Create()

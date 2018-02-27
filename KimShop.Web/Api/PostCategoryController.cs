@@ -29,9 +29,10 @@ namespace KimShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetAll().ToList();
+                var listCategory = _postCategoryService.GetAll();// ToList()
 
-                var listPostCategoryVm = Mapper.Map<List<PostCategory>, List<PostCategoryViewModel>>(listCategory);
+                // Chuyển IEnumerable thành List nếu có gặp lỗi
+                var listPostCategoryVm = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(listCategory);
 
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 

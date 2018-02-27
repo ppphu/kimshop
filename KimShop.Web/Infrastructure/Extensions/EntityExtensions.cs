@@ -1,5 +1,6 @@
 ﻿using KimShop.Model.Models;
 using KimShop.Web.Models;
+using System;
 
 namespace KimShop.Web.Infrastructure.Extensions
 {
@@ -71,6 +72,7 @@ namespace KimShop.Web.Infrastructure.Extensions
         {
             product.ID = productVm.ID;
             product.Name = productVm.Name;
+            product.Quantity = productVm.Quantity;
             product.Price = productVm.Price;
             product.PromotionPrice = productVm.PromotionPrice;
             product.Warranty = productVm.Warranty;
@@ -92,6 +94,23 @@ namespace KimShop.Web.Infrastructure.Extensions
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
+        }
+
+        public static void UpdateAppGroup(this AppGroup appGroup, AppGroupViewModel appGroupViewModel)
+        {
+            appGroup.ID = appGroupViewModel.ID;
+            appGroup.Name = appGroupViewModel.Name;
+            appGroup.Descripton = appGroupViewModel.Descripton;
+        }
+
+        public static void UpdateAppRole(this AppRole appRole, AppRoleViewModel appRoleViewModel, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleViewModel.Id;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleViewModel.Name;
+            appRole.Description = appRoleViewModel.Description;
         }
     }
 }

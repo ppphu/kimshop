@@ -15,8 +15,8 @@ using System.Web.Script.Serialization;
 
 namespace KimShop.Web.Api
 {
-    [RoutePrefix("api/productcategory")]
     //[Authorize]
+    [RoutePrefix("api/productcategory")]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Initialize

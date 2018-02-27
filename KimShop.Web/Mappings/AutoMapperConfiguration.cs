@@ -22,10 +22,13 @@ namespace KimShop.Web.Mappings
                 cfg.CreateMap<MenuViewModel, Menu>();
                 cfg.CreateMap<MenuGroupViewModel, MenuGroup>();
 
+                cfg.CreateMap<Footer, FooterViewModel>();
+
+                cfg.CreateMap<Slide, SlideViewModel>();
+
+                cfg.CreateMap<Page, PageViewModel>();
+
                 //cfg.CreateMap<ProductTag, ProductTagViewModel>();
-                //cfg.CreateMap<Footer, FooterViewModel>();
-                //cfg.CreateMap<Slide, SlideViewModel>();
-                //cfg.CreateMap<Page, PageViewModel>();
                 //cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
                 //cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
                 //cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
