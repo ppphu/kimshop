@@ -15,6 +15,7 @@ namespace KimShop.Data
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuGroup> MenuGroups { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostCategory> PostCategories { get; set; }
@@ -33,6 +34,9 @@ namespace KimShop.Data
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppRoleGroup> AppRoleGroups { get; set; }
         public DbSet<AppUserGroup> AppUserGroups { get; set; }
+
+        public DbSet<ContactDetail> ContactDetails { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

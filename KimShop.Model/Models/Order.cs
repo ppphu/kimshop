@@ -44,6 +44,14 @@ namespace KimShop.Model.Models
 
         public bool Status { get; set; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+
+        [StringLength(128)]
+        [Column(TypeName = "nvarchar")]
+        public string CustomerId { set; get; }
+
+        [ForeignKey("CustomerId")]
+        public virtual AppUser User { set; get; }
+
+        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
     }
 }

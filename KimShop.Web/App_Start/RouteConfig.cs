@@ -8,6 +8,15 @@ namespace KimShop.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
+            routes.MapRoute(
+                name: "Contact",
+                url: "lien-he.html",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "About",
@@ -24,9 +33,30 @@ namespace KimShop.Web
             );
 
             routes.MapRoute(
+               name: "Register",
+               url: "dang-ky.html",
+               defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+               namespaces: new string[] { "KimShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Product Category",
                 url: "{alias}.pc-{id}.html",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Cart",
+                url: "gio-hang.html",
+                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "KimShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Checkout",
+                url: "thanh-toan.html",
+                defaults: new { controller = "ShoppingCart", action = "Checkout", id = UrlParameter.Optional },
                 namespaces: new string[] { "KimShop.Web.Controllers" }
             );
 

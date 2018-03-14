@@ -40,6 +40,7 @@ namespace KimShop.Service
                     orderDetail.OrderID = order.ID;
                     _orderDetailRepository.Add(orderDetail);
                 }
+                _unitOfWork.Commit();
                 return order;
             }
             catch (Exception ex)

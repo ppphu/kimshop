@@ -16,6 +16,8 @@ namespace KimShop.Model.Models
 
         public int Quantity { get; set; }
 
+        public decimal Price { set; get; }
+
         [ForeignKey("OrderID")]
         public virtual Order Order { get; set; }
 

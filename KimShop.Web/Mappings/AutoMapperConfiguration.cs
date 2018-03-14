@@ -28,7 +28,8 @@ namespace KimShop.Web.Mappings
 
                 cfg.CreateMap<Page, PageViewModel>();
 
-                //cfg.CreateMap<ProductTag, ProductTagViewModel>();
+                cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
+
                 //cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
                 //cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
                 //cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();

@@ -38,7 +38,7 @@ namespace KimShop.Web.Controllers
         }
 
         [ChildActionOnly]
-        [OutputCache(Duration =3600)]
+        [OutputCache(Duration =3600,Location =System.Web.UI.OutputCacheLocation.Client)]
         public ActionResult Header()
         {
             return PartialView();

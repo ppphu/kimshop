@@ -101,13 +101,27 @@
     <Compile Include="Migrations\201801080857162_AddGroupUser.Designer.cs">
       <DependentUpon>201801080857162_AddGroupUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802270905411_ContactDetail.cs" />
+    <Compile Include="Migrations\201802270905411_ContactDetail.Designer.cs">
+      <DependentUpon>201802270905411_ContactDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803060807476_Feedback.cs" />
+    <Compile Include="Migrations\201803060807476_Feedback.Designer.cs">
+      <DependentUpon>201803060807476_Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs" />
+    <Compile Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.Designer.cs">
+      <DependentUpon>201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
     <Compile Include="Repositories\AppRoleGroupRepository.cs" />
     <Compile Include="Repositories\AppRoleRepository.cs" />
     <Compile Include="Repositories\AppUserGroupRepository.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -167,6 +181,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801080857162_AddGroupUser.resx">
       <DependentUpon>201801080857162_AddGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802270905411_ContactDetail.resx">
+      <DependentUpon>201802270905411_ContactDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803060807476_Feedback.resx">
+      <DependentUpon>201803060807476_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.resx">
+      <DependentUpon>201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

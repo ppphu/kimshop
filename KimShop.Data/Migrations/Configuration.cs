@@ -6,6 +6,8 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
+    using System.Diagnostics;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<KimShopDbContext>
@@ -26,6 +28,7 @@
             //CreateSlide(context);
             //CreateProductCategorySample(context);
             //CreatePage(context);
+            //CreateContactDetail(context);
         }
 
         private void CreateUser(KimShopDbContext context)
@@ -132,5 +135,42 @@
                 context.SaveChanges();
             }
         }
+
+        private void CreateContactDetail(KimShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                try
+                {
+                    var contactDetail = new KimShop.Model.Models.ContactDetail()
+                    {
+                        Name = "Shop thời trang Kimshop",
+                        Address = "222 Thoai Ngoc Hau, Q.Tân Phú",
+                        Email = "ppphu1302@gmail.com",
+                        Lat = 10.7786634,
+                        Lng = 106.6283816,
+                        Phone = "0908542323",
+                        Website = "http://kimshop.vn",
+                        Other = "",
+                        Status = true
+
+                    };
+                    context.ContactDetails.Add(contactDetail);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

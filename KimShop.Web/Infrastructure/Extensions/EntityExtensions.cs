@@ -1,6 +1,8 @@
-﻿using KimShop.Model.Models;
+﻿using AutoMapper;
+using KimShop.Model.Models;
 using KimShop.Web.Models;
 using System;
+using System.Collections.Generic;
 
 namespace KimShop.Web.Infrastructure.Extensions
 {
@@ -94,6 +96,32 @@ namespace KimShop.Web.Infrastructure.Extensions
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
+        }
+
+        public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackVm)
+        {
+            feedback.Name = feedbackVm.Name;
+            feedback.Email = feedbackVm.Email;
+            feedback.Message = feedbackVm.Message;
+            feedback.CreatedDate = DateTime.Now;
+            feedback.Status = feedbackVm.Status;
+        }
+
+        public static void UpdateOrder(this Order order, OrderViewModel orderVm)
+        {
+            order.CustomerName = orderVm.CustomerName;
+            order.CustomerAddress = orderVm.CustomerAddress;
+            order.CustomerMobile = orderVm.CustomerMobile;
+            order.CustomerEmail = orderVm.CustomerEmail;
+            order.CustomerMessage = orderVm.CustomerMessage;
+            order.CreatedDate = DateTime.Now;
+            
+
+            order.Status = orderVm.Status;
+            order.CreatedBy = orderVm.CreatedBy;
+            order.CustomerId = orderVm.CustomerId;
+            order.PaymentMethod = orderVm.PaymentMethod;
+            order.PaymentStatus = orderVm.PaymentStatus;
         }
 
         public static void UpdateAppGroup(this AppGroup appGroup, AppGroupViewModel appGroupViewModel)

@@ -1,0 +1,62 @@
+﻿@using BotDetect.Web.Mvc;
+@model KimShop.Web.Models.FeedbackViewModel
+
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<link href="~/Assets/client/css/map-contact.css" rel="stylesheet" />
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@section jsFooter{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJb2PPMtlDDzMna32dSCVJ7IONKlUQ-I"></script>
+    <script src="~/Assets/client/js/controllers/contact.js"></script>
+}
+
+<input type="hidden" id="hidLat" value="@Model.ContactDetail.Lat" />
+<input type="hidden" id="hidLng" value="@Model.ContactDetail.Lng" />
+<input type="hidden" id="hidName" value="@Model.Name" />
+<input type="hidden" id="hidAddress" value="@Model.Name <br />Điện thoại: @Model.ContactDetail.Phone <br />Địa chỉ: @Model.ContactDetail.Address" />
+
+<div class="main">
+    <div class="reservation_top">
+        <div class="contact_right">
+            <h3>Thông tin liên hệ</h3>
+            <div class="contact-form">
+                <address class="address">
+                    <p>@Model.ContactDetail.Address</p>
+                    <dl>
+                        <dt> </dt>
+                        <dd>Điện thoại:<span> @Model.ContactDetail.Phone</span></dd>
+                        <dd>E-mail:&nbsp; <a href="mailto@(Model.Email)">@Model.Email</a></dd>
+                    </dl>
+                </address>
+                <div class="clearfix"></div>
+                <div id="map"></div>
+            </div>
+            <h3>Ý kiến phản hồi</h3>
+            <div class="contact-form">
+                @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post))
+                {
+                    if (ViewData["SuccessMsg"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <strong>Chúc mừng bạn: </strong> gửi phản hồi thành công!
+                            <br />Chúng tôi sẽ sớm liên hệ qua email bạn đã cung cấp!
+                        </div>
+                    }
+                    @Html.ValidationSummary(false, "", new { @style = "color: red" })
+                    @Html.TextBoxFor(Model => Model.Name, new { @class = "textbox", @placeholder = "Họ tên" });
+                    @Html.TextBoxFor(Model => Model.Email, new { @class = "textbox", @placeholder = "Email" });
+                    @Html.TextAreaFor(Model => Model.Message, new { @placeholder = "Nội dung phản hồi" });
+                    MvcCaptcha contactCaptcha = new MvcCaptcha("contactCaptcha");
+                    @Html.Captcha(contactCaptcha)
+                    @Html.TextBox("CaptchaCode")
+                    <input type="submit" value="GỬI">
+                    <div class="clearfix"> </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

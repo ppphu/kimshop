@@ -62,6 +62,14 @@
       <HintPath>..\packages\AutoMapper.6.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BotDetect, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net46\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net46\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\CKFinder.dll</HintPath>
@@ -119,6 +127,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -127,6 +139,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.4\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -184,12 +204,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Http">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
@@ -216,10 +230,12 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,10 +245,15 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\AppGroupViewModel.cs" />
     <Compile Include="Models\AppRoleViewModel.cs" />
+    <Compile Include="Models\ContactDetailViewModel.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MenuGroupViewModel.cs" />
     <Compile Include="Models\MenuViewModel.cs" />
+    <Compile Include="Models\OrderDetailViewModel.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />
     <Compile Include="Models\PostTagViewModel.cs" />
@@ -240,6 +261,8 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5834,6 +5857,125 @@
     <Content Include="Assets\admin\libs\jquery-ui\ui\widgets\spinner.js" />
     <Content Include="Assets\admin\libs\jquery-ui\ui\widgets\tabs.js" />
     <Content Include="Assets\admin\libs\jquery-ui\ui\widgets\tooltip.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\build\release.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\dist\additional-methods.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\dist\additional-methods.min.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\dist\jquery.validate.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\Gruntfile.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\accept.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\additional.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\alphanumeric.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\bankaccountNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\bankorgiroaccountNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\bic.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\cifES.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\cpfBR.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\creditcard.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\creditcardtypes.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\currency.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\dateFA.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\dateITA.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\dateNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\extension.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\giroaccountNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\iban.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\integer.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\ipv4.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\ipv6.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\lettersonly.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\letterswithbasicpunc.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\mobileNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\mobileUK.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\netmask.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\nieES.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\nifES.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\nipPL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\notEqualTo.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\nowhitespace.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\pattern.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\phoneNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\phonesUK.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\phoneUK.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\phoneUS.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\postalcodeBR.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\postalCodeCA.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\postalcodeIT.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\postalcodeNL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\postcodeUK.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\require_from_group.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\skip_or_fill_minimum.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\statesUS.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\strippedminlength.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\time.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\time12h.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\url2.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\vinUS.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\zipcodeUS.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\additional\ziprange.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\ajax.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\core.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ar.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_az.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_bg.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_bn_BD.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ca.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_cs.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_da.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_de.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_el.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_es.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_es_AR.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_es_PE.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_et.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_eu.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_fa.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_fi.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_fr.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ge.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_gl.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_he.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_hr.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_hu.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_hy_AM.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_id.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_is.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_it.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ja.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ka.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_kk.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ko.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_lt.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_lv.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_mk.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_my.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_nl.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_no.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_pl.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_pt_BR.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_pt_PT.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ro.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ru.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sd.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_si.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sk.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sl.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sr.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sr_lat.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_sv.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_th.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_tj.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_tr.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_uk.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_ur.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_vi.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_zh.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\messages_zh_TW.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\methods_de.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\methods_es_CL.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\methods_fi.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\methods_nl.js" />
+    <Content Include="Assets\admin\libs\jquery-validation\src\localization\methods_pt.js" />
     <Content Include="Assets\admin\libs\jquery\.gitattributes" />
     <Content Include="Assets\admin\libs\jquery\.gitignore" />
     <Content Include="Assets\admin\libs\jquery\AUTHORS.txt" />
@@ -6063,6 +6205,10 @@
     <Content Include="Assets\admin\libs\jquery\test\unit\traversing.js" />
     <Content Include="Assets\admin\libs\jquery\test\unit\tween.js" />
     <Content Include="Assets\admin\libs\jquery\test\unit\wrap.js" />
+    <Content Include="Assets\admin\libs\mustache\mustache.js" />
+    <Content Include="Assets\admin\libs\mustache\mustache.min.js" />
+    <Content Include="Assets\admin\libs\mustache\spec\_files\bom_as_whitespace.js" />
+    <Content Include="Assets\admin\libs\mustache\spec\_files\bom_as_whitespace.txt" />
     <Content Include="Assets\admin\libs\ng-ckeditor\.gitignore" />
     <Content Include="Assets\admin\libs\ng-ckeditor\examples\1.html" />
     <Content Include="Assets\admin\libs\ng-ckeditor\examples\css\bootstrap.css" />
@@ -6298,6 +6444,167 @@
     <Content Include="Assets\admin\libs\ngBootbox\examples\index.html" />
     <Content Include="Assets\admin\libs\ngBootbox\gulpfile.js" />
     <Content Include="Assets\admin\libs\ngBootbox\ngBootbox.js" />
+    <Content Include="Assets\admin\libs\numeral\Gruntfile.js" />
+    <Content Include="Assets\admin\libs\numeral\karma-ci.conf.js" />
+    <Content Include="Assets\admin\libs\numeral\locales.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\bg.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\chs.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\cs.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\da-dk.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\de-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\de.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\en-au.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\en-gb.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\en-za.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\es-es.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\es.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\et.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\fi.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\fr-ca.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\fr-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\fr.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\hu.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\it.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\ja.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\lv.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\nl-be.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\nl-nl.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\no.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\pl.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\pt-br.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\pt-pt.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\ru-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\ru.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\sk.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\sl.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\th.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\tr.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\uk-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\locales\vi.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\be-nl.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\bg.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\chs.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\cs.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\da-dk.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\de-ch.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\de.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\en-au.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\en-gb.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\en-za.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\es-es.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\es.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\et.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\fi.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\fr-ca.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\fr-ch.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\fr.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\hu.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\it.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\ja.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\lv.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\nl-be.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\nl-nl.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\no.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\pl.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\pt-br.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\pt-pt.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\ru-ua.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\ru.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\sk.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\sl.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\th.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\tr.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\uk-ua.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\locales\vi.min.js" />
+    <Content Include="Assets\admin\libs\numeral\min\numeral.min.js" />
+    <Content Include="Assets\admin\libs\numeral\numeral.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\bps.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\bytes.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\currency.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\exponential.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\ordinal.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\percentage.js" />
+    <Content Include="Assets\admin\libs\numeral\src\formats\time.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\bg.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\chs.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\cs.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\da-dk.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\de-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\de.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\en-au.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\en-gb.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\en-za.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\es-es.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\es.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\et.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\fi.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\fr-ca.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\fr-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\fr.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\hu.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\it.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\ja.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\lv.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\nl-be.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\nl-nl.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\no.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\pl.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\pt-br.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\pt-pt.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\ru-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\ru.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\sk.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\sl.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\th.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\tr.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\uk-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\src\locales\vi.js" />
+    <Content Include="Assets\admin\libs\numeral\src\numeral.js" />
+    <Content Include="Assets\admin\libs\numeral\templates\anon.js" />
+    <Content Include="Assets\admin\libs\numeral\templates\types.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\bps.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\bytes.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\currency.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\exponential.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\ordinal.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\percentage.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\formats\time.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\bg.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\chs.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\cs.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\da-dk.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\de-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\de.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\en-au.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\en-gb.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\en-za.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\es-es.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\es.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\et.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\fi.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\fr-ca.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\fr-ch.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\fr.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\hu.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\it.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\ja.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\lv.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\nl-be.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\nl-nl.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\no.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\pl.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\pt-br.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\pt-pt.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\ru-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\ru.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\sk.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\sl.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\th.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\tr.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\uk-ua.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\locales\vi.js" />
+    <Content Include="Assets\admin\libs\numeral\tests\numeral.js" />
     <Content Include="Assets\admin\libs\slimScroll\examples\allow-page-scroll.html" />
     <Content Include="Assets\admin\libs\slimScroll\examples\chaining.html" />
     <Content Include="Assets\admin\libs\slimScroll\examples\disable-fade-out.html" />
@@ -6326,6 +6633,7 @@
     <Content Include="Assets\client\css\custom.css" />
     <Content Include="Assets\client\css\etalage.css" />
     <Content Include="Assets\client\css\form.css" />
+    <Content Include="Assets\client\css\map-contact.css" />
     <Content Include="Assets\client\css\style.css" />
     <Content Include="Assets\client\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Assets\client\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -6384,10 +6692,14 @@
     <Content Include="Assets\client\images\wat.jpg" />
     <Content Include="Assets\client\images\zoom.png" />
     <Content Include="Assets\client\js\common.js" />
+    <Content Include="Assets\client\js\controllers\contact.js" />
+    <Content Include="Assets\client\js\controllers\shoppingCart.js" />
     <Content Include="Assets\client\js\jquery.etalage.min.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\jquery.wmuSlider.js" />
+    <Content Include="Assets\client\template\contact_template.html" />
+    <Content Include="Assets\client\template\new_Register.html" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Libs\CKFinder.dll" />
@@ -6412,8 +6724,6 @@
     <Folder Include="App\components\users\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
-    <Folder Include="Views\About\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
@@ -6896,6 +7206,66 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Page\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\About\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\mustache\.bower.json" />
+    <Content Include="Assets\admin\libs\mustache\bin\mustache" />
+    <Content Include="Assets\admin\libs\mustache\bower.json" />
+    <Content Include="Assets\admin\libs\mustache\CHANGELOG.md" />
+    <Content Include="Assets\admin\libs\mustache\hooks\install-hooks.sh" />
+    <Content Include="Assets\admin\libs\mustache\hooks\pre-commit" />
+    <Content Include="Assets\admin\libs\mustache\LICENSE" />
+    <Content Include="Assets\admin\libs\mustache\MIGRATING.md" />
+    <Content Include="Assets\admin\libs\mustache\mustache.js.nuspec" />
+    <Content Include="Assets\admin\libs\mustache\package.json" />
+    <Content Include="Assets\admin\libs\mustache\Rakefile" />
+    <Content Include="Assets\admin\libs\mustache\README.md" />
+    <Content Include="Assets\admin\libs\mustache\spec\_files\bom_as_whitespace.mustache" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\dojo\mustache.js.post" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\dojo\mustache.js.pre" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\jquery\mustache.js.post" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\jquery\mustache.js.pre" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\mootools\mustache.js.post" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\mootools\mustache.js.pre" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\qooxdoo\mustache.js.post" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\qooxdoo\mustache.js.pre" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\yui3\mustache.js.post" />
+    <Content Include="Assets\admin\libs\mustache\wrappers\yui3\mustache.js.pre" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\numeral\.bower.json" />
+    <Content Include="Assets\admin\libs\numeral\.gitignore" />
+    <Content Include="Assets\admin\libs\numeral\.travis.yml" />
+    <Content Include="Assets\admin\libs\numeral\bower.json" />
+    <Content Include="Assets\admin\libs\numeral\component.json" />
+    <Content Include="Assets\admin\libs\numeral\LICENSE" />
+    <Content Include="Assets\admin\libs\numeral\package.json" />
+    <Content Include="Assets\admin\libs\numeral\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\jquery-validation\.bower.json" />
+    <Content Include="Assets\admin\libs\jquery-validation\bower.json" />
+    <Content Include="Assets\admin\libs\jquery-validation\changelog.md" />
+    <Content Include="Assets\admin\libs\jquery-validation\CONTRIBUTING.md" />
+    <Content Include="Assets\admin\libs\jquery-validation\LICENSE.md" />
+    <Content Include="Assets\admin\libs\jquery-validation\package.json" />
+    <Content Include="Assets\admin\libs\jquery-validation\README.md" />
+    <Content Include="Assets\admin\libs\jquery-validation\validation.jquery.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

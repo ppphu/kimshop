@@ -772,7 +772,7 @@ p.m_text {
 }
 .contact-form input[type="text"] {
 	display: block;
-	width:70%;
+	width:100%;
 	padding: 10px;
 	border: 1px solid #ddd;
 	outline: none;
@@ -994,6 +994,7 @@ a.forgot {
 	border:none;
 	outline:none;
 }
+
 .register-but input[type="submit"]:hover {
 	background:#1DBAA5;
 }
