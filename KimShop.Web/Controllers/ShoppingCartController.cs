@@ -16,9 +16,9 @@ namespace KimShop.Web.Controllers
     {
         private IOrderService _orderService;
         private IProductService _productService;
-        private ApplicationUserManager _userManager;
+        private AppUserManager _userManager;
 
-        public ShoppingCartController(IProductService productService, IOrderService orderService, ApplicationUserManager userManager)
+        public ShoppingCartController(IProductService productService, IOrderService orderService, AppUserManager userManager)
         {
             this._userManager = userManager;
             this._orderService = orderService;

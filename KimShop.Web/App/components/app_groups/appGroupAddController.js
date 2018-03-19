@@ -3,7 +3,7 @@
 
     app.controller('appGroupAddController', appGroupAddController);
 
-    appGroupAddController.$inject = ['$scope','$location', 'apiService', 'notificationService', 'commonService'];
+    appGroupAddController.$inject = ['$scope','$location', 'apiService', 'commonService', 'notificationService'];
 
     function appGroupAddController($scope, $location, apiService, commonService, notificationService) {
         $scope.group = {
@@ -14,12 +14,11 @@
         $scope.AddAppGroup = AddAppGroup;
 
         function AddAppGroup() {
-            apiService.post('/api/appgroup/add', $scope.group, addSuccessed, addFailed);
+            apiService.post('api/appGroup/add', $scope.group, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
             notificationService.displaySuccess($scope.group.Name + ' đã được thêm mới.');
-
             $location.url('app_groups');
         }
         function addFailed(response) {
@@ -27,7 +26,7 @@
             notificationService.displayErrorValidation(response);
         }
         function loadRoles() {
-            apiService.get('/api/approle/getlistall',
+            apiService.get('api/appRole/getall',
                 null,
                 function (response) {
                     $scope.roles = response.data;

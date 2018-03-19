@@ -1,53 +1,48 @@
 ﻿(function (app) {
-    app.controller('productCategoryEditController', productCategoryEditController);
-    productCategoryEditController.$inject = ['$scope', '$state', '$stateParams', 'apiService', 'notificationService', 'commonService'];
-    function productCategoryEditController($scope, $state, $stateParams, apiService, notificationService, commonService) {
-        $scope.productCategory = {
-            UpdatedDate: new Date()
-        };
+    'use strict';
 
-        $scope.UpdateProductCategory = UpdateProductCategory;
-        $scope.GetSeoTitle = GetSeoTitle;
+    app.controller('appGroupEditController', appGroupEditController);
 
-        function GetSeoTitle() {
-            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+    appGroupEditController.$inject = ['$scope', '$location', '$stateParams', 'apiService', 'notificationService'];
+
+    function appGroupEditController($scope, $location, $stateParams, apiService, notificationService) {
+        $scope.group = {};
+
+        $scope.updateAppGroup = updateAppGroup;
+
+        function updateAppGroup() {
+            apiService.put('api/appGroup/update', $scope.group, addSuccessed, addFailed);
+        }
+        function loadDetail() {
+            apiService.get('api/appGroup/detail/' + $stateParams.id, null,
+            function (result) {
+                $scope.group = result.data;
+            },
+            function (result) {
+                notificationService.displayError(result.data);
+            });
         }
 
-        $scope.ChooseImage = function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.$apply(function () {
-                    $scope.productCategory.Image = fileUrl;
+        function addSuccessed() {
+            notificationService.displaySuccess($scope.group.Name + ' đã được cập nhật thành công.');
+
+            $location.url('app_groups');
+        }
+        function addFailed(response) {
+            notificationService.displayError(response.data.Message);
+            notificationService.displayErrorValidation(response);
+        }
+        function loadRoles() {
+            apiService.get('api/appRole/getall',
+                null,
+                function (response) {
+                    $scope.roles = response.data;
+                }, function (response) {
+                    notificationService.displayError('Không tải được danh sách quyền.');
                 });
-            };
-            finder.popup();
-        };
-
-        function UpdateProductCategory() {
-            apiService.put('api/productcategory/update', $scope.productCategory, function (result) {
-                notificationService.displaySuccess(result.data.Name + ' đã được cập nhật!');
-                $state.go('product_categories');
-            }, function (error) {
-                notificationService.displayError('Cập nhật không thành công!');
-            });
         }
 
-        function loadProductCategoryDetail() {
-            apiService.get('api/productcategory/getbyid/' + $stateParams.id, null, function (result) {
-                $scope.productCategory = result.data;
-            }), function (error) {
-                notificationService.displayError(error.data);
-            };
-        }
-
-        function loadParentCategory() {
-            apiService.get('api/productCategory/getallparents', null, function (result) {
-                $scope.parentCategories = result.data;
-            }, function () {
-                console.log('Cannot get parent list.');
-            });
-        }
-        loadParentCategory();
-        loadProductCategoryDetail();
+        loadRoles();
+        loadDetail();
     }
-})(angular.module('kimshop.product_categories'));
+})(angular.module('kimshop.app_groups'));

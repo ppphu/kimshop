@@ -1,10 +1,10 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header">
-    <h1> THÊM MỚI NHÓM </h1>
+    <h1> THÊM NHÓM MỚI </h1>
     <ol class="breadcrumb">
         <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li><a ui-sref="app_groups"> Danh mục nhóm </a></li>
-        <li class="active"> Thêm mới </li>
+        <li class="active"> Thêm </li>
     </ol>
 </section>
 <!-- Main content -->
@@ -31,8 +31,14 @@
                                 <input type="text" name="name" class="form-control" required reqired-message="Tên nhóm bắt buộc." ng-model="group.Name">
                             </div>
                         </div>
-
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Mô tả</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="Description" class="form-control" ng-model="group.Descripton">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Chức năng</label>
                             <div class="col-sm-offset-2 col-sm-10">
                                 <label ng-repeat="role in roles">
                                     <input type="checkbox" checklist-model="group.Roles" checklist-value="role"> {{role.Description}}
@@ -42,8 +48,8 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" ng-disabled="frmAddAppGroup.$invalid" class="btn btn-success pull-right" style="margin-left:8px;">LƯU</button>
-                        <button ui-sref="app_groups" class="btn btn-danger pull-right" >HỦY</button>
+                        <button type="submit" ng-disabled="frmAddAppGroup.$invalid" class="btn btn-success pull-right" style="margin-left:8px;"><i class="fa fa-save"></i> LƯU</button>
+                        <button ui-sref="app_groups" class="btn btn-danger pull-right"><i class="fa fa-close"></i> HỦY</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>

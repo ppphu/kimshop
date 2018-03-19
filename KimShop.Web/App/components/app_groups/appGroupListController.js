@@ -65,7 +65,7 @@
                 var config = {
                     params: { id: id }
                 };
-                apiService.del('api/appgroup/delete', config, function () {
+                apiService.del('api/appGroup/delete', config, function () {
                     notificationService.displaySuccess('Đã xóa thành công');
                     search();
                 }, function () {
@@ -82,7 +82,7 @@
             page = page || 0;
             var config = { params: { keyword: $scope.keyword, page: page, pageSize: 10 } };
             $scope.loading = true;
-            apiService.get('/api/appgroup/getall', config, function (result) {
+            apiService.get('api/appgroup/getlistpaging', config, function (result) {
                 if (result.data.TotalCount === 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy!');
                 }

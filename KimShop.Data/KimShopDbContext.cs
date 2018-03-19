@@ -38,20 +38,19 @@ namespace KimShop.Data
         public DbSet<ContactDetail> ContactDetails { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<AppUser>().ToTable("AppUsers");
-            modelBuilder.Entity<IdentityRole>().ToTable("AppRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("AppUserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("AppUserClaims");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("AppUserRoles");
-        }
-
         public static KimShopDbContext Create()
         {
             return new KimShopDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<AppUser>().ToTable("AppUsers");
+            modelBuilder.Entity<IdentityRole>().ToTable("AppRoles");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("AppUserLogins");
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.RoleId, i.UserId }).ToTable("AppUserRoles");
         }
     }
 }

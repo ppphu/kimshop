@@ -30,10 +30,9 @@ namespace KimShop.Web.Mappings
 
                 cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
 
-                //cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
-                //cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
-                //cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
-                //cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+                cfg.CreateMap<AppGroup, AppGroupViewModel>();
+                cfg.CreateMap<AppRole, AppRoleViewModel>();
+                cfg.CreateMap<AppUser, AppUserViewModel>();
             });
         }
     }

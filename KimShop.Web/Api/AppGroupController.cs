@@ -17,17 +17,17 @@ using System.Web.Script.Serialization;
 
 namespace KimShop.Web.Api
 {
-    [Authorize]
-    [RoutePrefix("api/appgroup")]
+    //[Authorize]
+    [RoutePrefix("api/appGroup")]
     public class AppGroupController : ApiControllerBase
     {
         private IAppGroupService _appGroupService;
         private IAppRoleService _appRoleService;
-        private ApplicationUserManager _userManager;
+        private AppUserManager _userManager;
 
         public AppGroupController(IErrorService errorService,
             IAppRoleService appRoleService,
-            ApplicationUserManager userManager,
+            AppUserManager userManager,
             IAppGroupService appGroupService) : base(errorService)
         {
             _appGroupService = appGroupService;
@@ -101,6 +101,7 @@ namespace KimShop.Web.Api
             {
                 var newAppGroup = new AppGroup();
                 newAppGroup.Name = appGroupViewModel.Name;
+                newAppGroup.Descripton = appGroupViewModel.Descripton;
                 try
                 {
                     var appGroup = _appGroupService.Add(newAppGroup);

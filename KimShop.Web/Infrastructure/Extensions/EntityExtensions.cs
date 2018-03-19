@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using KimShop.Model.Models;
+﻿using KimShop.Model.Models;
 using KimShop.Web.Models;
 using System;
-using System.Collections.Generic;
 
 namespace KimShop.Web.Infrastructure.Extensions
 {
@@ -115,7 +113,6 @@ namespace KimShop.Web.Infrastructure.Extensions
             order.CustomerEmail = orderVm.CustomerEmail;
             order.CustomerMessage = orderVm.CustomerMessage;
             order.CreatedDate = DateTime.Now;
-            
 
             order.Status = orderVm.Status;
             order.CreatedBy = orderVm.CreatedBy;
@@ -139,6 +136,17 @@ namespace KimShop.Web.Infrastructure.Extensions
                 appRole.Id = Guid.NewGuid().ToString();
             appRole.Name = appRoleViewModel.Name;
             appRole.Description = appRoleViewModel.Description;
+        }
+
+        public static void UpdateUser(this AppUser appUser, AppUserViewModel appUserViewModel, string action = "add")
+        {
+            appUser.Id = appUserViewModel.Id;
+            appUser.FullName = appUserViewModel.FullName;
+            appUser.Birthday = appUserViewModel.Birthday;
+            appUser.Address = appUserViewModel.Address;
+            appUser.Email = appUserViewModel.Email;
+            appUser.UserName = appUserViewModel.UserName;
+            appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
     }
 }

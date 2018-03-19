@@ -40,7 +40,7 @@ namespace KimShop.Common
 
                 return true;
             }
-            catch (SmtpException smex)
+            catch //(SmtpException smex)
             {
                 return false;
             }

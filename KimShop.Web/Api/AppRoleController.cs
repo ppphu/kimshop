@@ -15,8 +15,8 @@ using System.Web.Script.Serialization;
 
 namespace KimShop.Web.Api
 {
-    [Authorize]
-    [RoutePrefix("api/approle")]
+    //[Authorize]
+    [RoutePrefix("api/appRole")]
     
     public class AppRoleController : ApiControllerBase
     {
@@ -52,8 +52,9 @@ namespace KimShop.Web.Api
                 return response;
             });
         }
-        [Route("getlistall")]
+
         [HttpGet]
+        [Route("getall")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>

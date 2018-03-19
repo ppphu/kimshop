@@ -43,9 +43,9 @@ namespace KimShop.Web.App_Start
             builder.RegisterType<KimShopDbContext>().AsSelf().InstancePerRequest();
 
             // Asp.Net Identity
-            builder.RegisterType<ApplicationUserStore>().As<IUserStore<AppUser>>().InstancePerRequest();
-            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<AppUserStore>().As<IUserStore<AppUser>>().InstancePerRequest();
+            builder.RegisterType<AppUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<AppSignInManager>().AsSelf().InstancePerRequest();
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 

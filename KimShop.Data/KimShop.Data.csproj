@@ -65,53 +65,9 @@
     <Compile Include="Infrastructure\Repository.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="KimShopDbContext.cs" />
-    <Compile Include="Migrations\201711091005136_InitialDB.cs" />
-    <Compile Include="Migrations\201711091005136_InitialDB.Designer.cs">
-      <DependentUpon>201711091005136_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711121311029_AddErrorTable.cs" />
-    <Compile Include="Migrations\201711121311029_AddErrorTable.Designer.cs">
-      <DependentUpon>201711121311029_AddErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711161012433_Intergrate-AspnetIdentity.cs" />
-    <Compile Include="Migrations\201711161012433_Intergrate-AspnetIdentity.Designer.cs">
-      <DependentUpon>201711161012433_Intergrate-AspnetIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711170913485_Changekey.cs" />
-    <Compile Include="Migrations\201711170913485_Changekey.Designer.cs">
-      <DependentUpon>201711170913485_Changekey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711290749378_AddTagsField.cs" />
-    <Compile Include="Migrations\201711290749378_AddTagsField.Designer.cs">
-      <DependentUpon>201711290749378_AddTagsField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712070415121_AddMoreQuantityColumnInProductTable.cs" />
-    <Compile Include="Migrations\201712070415121_AddMoreQuantityColumnInProductTable.Designer.cs">
-      <DependentUpon>201712070415121_AddMoreQuantityColumnInProductTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801080354120_RenameIdentityTables.cs" />
-    <Compile Include="Migrations\201801080354120_RenameIdentityTables.Designer.cs">
-      <DependentUpon>201801080354120_RenameIdentityTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801080846334_RenameIdentityTableOneMore.cs" />
-    <Compile Include="Migrations\201801080846334_RenameIdentityTableOneMore.Designer.cs">
-      <DependentUpon>201801080846334_RenameIdentityTableOneMore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801080857162_AddGroupUser.cs" />
-    <Compile Include="Migrations\201801080857162_AddGroupUser.Designer.cs">
-      <DependentUpon>201801080857162_AddGroupUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802270905411_ContactDetail.cs" />
-    <Compile Include="Migrations\201802270905411_ContactDetail.Designer.cs">
-      <DependentUpon>201802270905411_ContactDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803060807476_Feedback.cs" />
-    <Compile Include="Migrations\201803060807476_Feedback.Designer.cs">
-      <DependentUpon>201803060807476_Feedback.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs" />
-    <Compile Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.Designer.cs">
-      <DependentUpon>201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs</DependentUpon>
+    <Compile Include="Migrations\201803170853368_InitialDB.cs" />
+    <Compile Include="Migrations\201803170853368_InitialDB.Designer.cs">
+      <DependentUpon>201803170853368_InitialDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,41 +111,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711091005136_InitialDB.resx">
-      <DependentUpon>201711091005136_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711121311029_AddErrorTable.resx">
-      <DependentUpon>201711121311029_AddErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711161012433_Intergrate-AspnetIdentity.resx">
-      <DependentUpon>201711161012433_Intergrate-AspnetIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711170913485_Changekey.resx">
-      <DependentUpon>201711170913485_Changekey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711290749378_AddTagsField.resx">
-      <DependentUpon>201711290749378_AddTagsField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712070415121_AddMoreQuantityColumnInProductTable.resx">
-      <DependentUpon>201712070415121_AddMoreQuantityColumnInProductTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801080354120_RenameIdentityTables.resx">
-      <DependentUpon>201801080354120_RenameIdentityTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801080846334_RenameIdentityTableOneMore.resx">
-      <DependentUpon>201801080846334_RenameIdentityTableOneMore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801080857162_AddGroupUser.resx">
-      <DependentUpon>201801080857162_AddGroupUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802270905411_ContactDetail.resx">
-      <DependentUpon>201802270905411_ContactDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803060807476_Feedback.resx">
-      <DependentUpon>201803060807476_Feedback.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803121327508_AddCustomerId_AddMoreOrderDetailTable.resx">
-      <DependentUpon>201803121327508_AddCustomerId_AddMoreOrderDetailTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803170853368_InitialDB.resx">
+      <DependentUpon>201803170853368_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

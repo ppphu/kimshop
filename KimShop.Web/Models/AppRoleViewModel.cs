@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace KimShop.Web.Models
+﻿namespace KimShop.Web.Models
 {
     public class AppRoleViewModel
     {
@@ -11,6 +6,5 @@ namespace KimShop.Web.Models
         public string Name { set; get; }
         public string Description { set; get; }
         public string Discriminator { set; get; }
-        
     }
 }

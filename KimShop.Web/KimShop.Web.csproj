@@ -212,6 +212,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\AppGroupController.cs" />
     <Compile Include="Api\AppRoleController.cs" />
+    <Compile Include="Api\AppUserController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\MenuController.cs" />
     <Compile Include="Api\MenuGroupController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\AppGroupViewModel.cs" />
     <Compile Include="Models\AppRoleViewModel.cs" />
+    <Compile Include="Models\AppUserViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
@@ -276,6 +278,20 @@
     <Content Include="App\components\app_groups\appGroupEditView.html" />
     <Content Include="App\components\app_groups\appGroupListController.js" />
     <Content Include="App\components\app_groups\appGroupListView.html" />
+    <Content Include="App\components\app_roles\appRoleAddController.js" />
+    <Content Include="App\components\app_roles\appRoleAddView.html" />
+    <Content Include="App\components\app_roles\appRoleEditController.js" />
+    <Content Include="App\components\app_roles\appRoleEditView.html" />
+    <Content Include="App\components\app_roles\appRoleListController.js" />
+    <Content Include="App\components\app_roles\appRoleListView.html" />
+    <Content Include="App\components\app_roles\appRoles.module.js" />
+    <Content Include="App\components\app_users\appUsers.module.js" />
+    <Content Include="App\components\app_users\appUserAddController.js" />
+    <Content Include="App\components\app_users\appUserAddView.html" />
+    <Content Include="App\components\app_users\appUserEditController.js" />
+    <Content Include="App\components\app_users\appUserEditView.html" />
+    <Content Include="App\components\app_users\appUserListController.js" />
+    <Content Include="App\components\app_users\appUserListView.html" />
     <Content Include="App\components\home\homeController.js" />
     <Content Include="App\components\home\homeView.html" />
     <Content Include="App\components\home\rootController.js" />
@@ -295,6 +311,7 @@
     <Content Include="App\components\product_categories\productCategoryEditView.html" />
     <Content Include="App\components\product_categories\productCategoryListController.js" />
     <Content Include="App\components\product_categories\productCategoryListView.html" />
+    <Content Include="App\shared\directives\asDateDirective.js" />
     <Content Include="App\shared\directives\pagerDirective.html" />
     <Content Include="App\shared\directives\pagerDirective.js" />
     <Content Include="App\shared\filters\statusFilter.js" />
@@ -436,6 +453,8 @@
     <Content Include="Assets\admin\libs\bootstrap\js\tooltip.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\transition.js" />
     <Content Include="Assets\admin\libs\bootstrap\package.js" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.js" />
+    <Content Include="Assets\admin\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\admin\libs\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\libs\ckeditor\ckeditor.js" />
     <Content Include="Assets\admin\libs\ckeditor\config.js" />
@@ -6720,10 +6739,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\components\orders\" />
-    <Folder Include="App\components\roles\" />
-    <Folder Include="App\components\users\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
+    <Folder Include="Assets\admin\libs\checklist-model\test\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
@@ -7266,6 +7284,12 @@
     <Content Include="Assets\admin\libs\jquery-validation\package.json" />
     <Content Include="Assets\admin\libs\jquery-validation\README.md" />
     <Content Include="Assets\admin\libs\jquery-validation\validation.jquery.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\admin\libs\checklist-model\.bower.json" />
+    <Content Include="Assets\admin\libs\checklist-model\bower.json" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.nuspec" />
+    <Content Include="Assets\admin\libs\checklist-model\readme.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
