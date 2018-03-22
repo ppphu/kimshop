@@ -1,0 +1,86 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1> THỐNG KÊ DOANH SỐ </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a href="#">Thống kê</a></li>
+        <!--<li class="active"> Danh mục sản phẩm</li>-->
+    </ol>
+</section>
+<div class="row">
+    <section class="col-lg-7">
+        <!-- Custom tabs (Charts with tabs)-->
+        <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+                <li class="active"><a href="javascript:void(0)" data-toggle="tab">Doanh thu</a></li>
+                <!--<li><a href="#sales-chart" data-toggle="tab">Donut</a></li>-->
+                <li class="pull-left header"><i class="fa fa-inbox"></i> Biểu đồ thống kê </li>
+            </ul>
+            <div class="tab-content no-padding">
+                <canvas id="bar" class="chart chart-bar" 
+                        chart-data="chartdata" chart-labels="labels" chart-series="series">
+                </canvas>
+                <!-- Morris chart - Sales -->
+                <!--<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>-->
+                <!--<div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>-->
+            </div>
+        </div>
+    </section>
+
+    <section class="col-lg-5">
+        <!-- Map box -->
+        <div class="box box-solid">
+            <div class="box-header">
+                <!-- tools box -->
+                <!--<div class="pull-right box-tools">
+                    <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"> <i class="fa fa-calendar"></i> </button>
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"> <i class="fa fa-minus"></i> </button>
+                </div>-->
+                <!-- /. tools -->
+                <i class="fa fa-map-marker"></i>
+                <h3 class="box-title"> Dữ liệu thống kê </h3>
+            </div>
+            <div class="box-body">
+                <!--<div id="world-map" style="height: 250px; width: 100%;"></div>-->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Doanh số</th>
+                            <th>Lợi nhuận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in tabledata">
+                            <td>{{item.Date | date:'dd-MM-yyyy HH:mm'}}</td>
+                            <td>{{item.Revenues | number}}</td>
+                            <td>{{item.Benefit | number}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body-->
+            <div class="box-footer no-border">
+                <div class="row">
+                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                        <div id="sparkline-1"></div>
+                        <div class="knob-label">Visitors: 10.000.000</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                        <div id="sparkline-2"></div>
+                        <div class="knob-label">Online: 7.500.000</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-xs-4 text-center">
+                        <div id="sparkline-3"></div>
+                        <div class="knob-label">Exists: 20.000.000</div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+    </section>
+</div>

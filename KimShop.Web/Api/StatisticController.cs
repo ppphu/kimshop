@@ -6,26 +6,28 @@ using System.Web.Http;
 
 namespace KimShop.Web.Api
 {
+    //[Authorize]
     [RoutePrefix("api/statistic")]
     public class StatisticController : ApiControllerBase
     {
         private IStatisticService _statisticService;
 
-        public StatisticController(IErrorService errorService, IStatisticService statisticService) : base(errorService)
+        public StatisticController(IErrorService errorService,
+            IStatisticService statisticService) : base(errorService)
         {
             _statisticService = statisticService;
         }
 
-        //[Route("getrevenue")]
-        //[HttpGet]
-        //public HttpResponseMessage GetRevenueStatistic(HttpRequestMessage request, string fromDate, string toDate)
-        //{
-        //    return CreateHttpResponse(request, () =>
-        //    {
-        //        var model = _statisticService.GetRevenueStatistic(fromDate, toDate);
-        //        HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, null);
-        //        return response;
-        //    });
-        //}
+        [HttpGet]
+        [Route("getRevenue")]
+        public HttpResponseMessage GetRevenueStatistic(HttpRequestMessage request, string fromDate, string toDate)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _statisticService.GetRevenueStatistic(fromDate, toDate);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, model);
+                return response;
+            });
+        }
     }
 }

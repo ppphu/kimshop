@@ -6,7 +6,7 @@ namespace KimShop.Web.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Descripton { get; set; }
+        public string Description { get; set; }
         public IEnumerable<AppRoleViewModel> Roles { set; get; }
     }
 }

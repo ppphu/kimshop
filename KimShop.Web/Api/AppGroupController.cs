@@ -101,7 +101,7 @@ namespace KimShop.Web.Api
             {
                 var newAppGroup = new AppGroup();
                 newAppGroup.Name = appGroupViewModel.Name;
-                newAppGroup.Descripton = appGroupViewModel.Descripton;
+                newAppGroup.Description = appGroupViewModel.Description;
                 try
                 {
                     var appGroup = _appGroupService.Add(newAppGroup);

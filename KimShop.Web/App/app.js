@@ -8,6 +8,7 @@
             'kimshop.app_roles',
             'kimshop.app_users',
             'kimshop.product_categories',
+            'kimshop.statistic',
             'kimshop.common'
         ])
         .config(config)

@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('kimshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'checklist-model']);
+    angular.module('kimshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'checklist-model','chart.js']);
 })();

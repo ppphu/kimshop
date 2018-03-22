@@ -6,7 +6,6 @@ using KimShop.Web.Infrastructure.Core;
 using KimShop.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -16,35 +15,37 @@ namespace KimShop.Web.Controllers
     {
         private IProductService _productService;
         private IProductCategoryService _productCategoryService;
+
         public ProductController(IProductService productService, IProductCategoryService productCategoryService)
         {
             this._productService = productService;
             this._productCategoryService = productCategoryService;
         }
+
         // GET: Product
         public ActionResult Detail(int productId)
         {
             var productModel = _productService.GetById(productId);
             var viewModel = Mapper.Map<Product, ProductViewModel>(productModel);
             var relatedProduct = _productService.GetReatedProducts(productId, 10);
-            ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>,IEnumerable<ProductViewModel>>( relatedProduct);
+            ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProduct);
             var moreImages = viewModel.MoreImages;
             List<string> listImages = new JavaScriptSerializer().Deserialize<List<string>>(moreImages);
             ViewBag.MoreImages = listImages;
             var tagList = _productService.GetListTagByProductId(productId);
-            ViewBag.Tags = Mapper.Map<IEnumerable<Tag>,IEnumerable<TagViewModel>>(tagList);
+            ViewBag.Tags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(tagList);
             return View(viewModel);
         }
 
-        public ActionResult Category(int id,int page = 1,string sort="")
+        public ActionResult Category(int id, int page = 1, string sort = "")
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
             int totalRow = 0;
-            var productModel = _productService.GetListProductByCategoryIdPaging(id, page,pageSize,sort ,out totalRow);
-            var productViewModels = Mapper.Map<IEnumerable<Product>,IEnumerable<ProductViewModel>>(productModel);
-            int totalPage = (int)Math.Ceiling((double)totalRow/pageSize);
+            var productModel = _productService.GetListProductByCategoryIdPaging(id, page, pageSize, sort, out totalRow);
+            var productViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModel);
+            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
             var category = _productCategoryService.GetById(id);
-            ViewBag.Category = Mapper.Map<ProductCategory,ProductCategoryViewModel>(category);
+            ViewBag.Category = Mapper.Map<ProductCategory, ProductCategoryViewModel>(category);
             var paginationSet = new PaginationSet<ProductViewModel>()
             {
                 Page = page,
@@ -82,8 +83,7 @@ namespace KimShop.Web.Controllers
             return Json(new
             {
                 data = model
-            },JsonRequestBehavior.AllowGet);
-            
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

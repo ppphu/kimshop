@@ -258,10 +258,10 @@ namespace KimShop.Service
         //Selling product
         public bool SellProduct(int productId, int quantity)
         {
-            //var product = _productRepository.GetSingleById(productId);
-            //if (product.qu < quantity)
-            //    return false;
-            //product.Quantity -= quantity;
+            var product = _productRepository.GetSingleById(productId);
+            if (product.Quantity < quantity)
+                return false;
+            product.Quantity -= quantity;
             return true;
         }
 

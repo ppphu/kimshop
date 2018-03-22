@@ -79,6 +79,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Giá nhập</label>
+                            <div class="col-sm-10">
+                                <input name="originalprice" type="number" required ng-model="product.OriginalPrice" class="form-control" placeholder="Nhập vào giá nhập sản phẩm.">
+                                <span ng-show="frmAddProduct.originalprice.$invalid" class="text-danger">*Phải nhập vào giá nhập sản phẩm.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Giá</label>
                             <div class="col-sm-10">
                                 <input name="price" type="number" required ng-model="product.Price" class="form-control" placeholder="Nhập vào giá sản phẩm.">

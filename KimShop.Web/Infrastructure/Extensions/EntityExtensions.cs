@@ -74,6 +74,7 @@ namespace KimShop.Web.Infrastructure.Extensions
             product.Name = productVm.Name;
             product.Quantity = productVm.Quantity;
             product.Price = productVm.Price;
+            product.OriginalPrice = productVm.OriginalPrice;
             product.PromotionPrice = productVm.PromotionPrice;
             product.Warranty = productVm.Warranty;
             product.Alias = productVm.Alias;
@@ -125,7 +126,7 @@ namespace KimShop.Web.Infrastructure.Extensions
         {
             appGroup.ID = appGroupViewModel.ID;
             appGroup.Name = appGroupViewModel.Name;
-            appGroup.Descripton = appGroupViewModel.Descripton;
+            appGroup.Description = appGroupViewModel.Description;
         }
 
         public static void UpdateAppRole(this AppRole appRole, AppRoleViewModel appRoleViewModel, string action = "add")

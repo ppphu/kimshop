@@ -49,6 +49,10 @@
                 if (res.status) {
                     alert('Thêm sản phẩm thành công.');
                 }
+                else
+                {
+                    alert(res.message);
+                }
             }
         });
     },

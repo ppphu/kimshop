@@ -14,6 +14,6 @@ namespace KimShop.Model.Models
         public string Name { get; set; }
 
         [StringLength(250)]
-        public string Descripton { get; set; }
+        public string Description { get; set; }
     }
 }

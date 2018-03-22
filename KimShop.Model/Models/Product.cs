@@ -20,6 +20,8 @@ namespace KimShop.Model.Models
 
         public decimal Price { get; set; }
 
+        public decimal OriginalPrice { get; set; }
+
         public decimal? PromotionPrice { get; set; }
 
         public int? Warranty { get; set; }

@@ -69,6 +69,18 @@
     <Compile Include="Migrations\201803170853368_InitialDB.Designer.cs">
       <DependentUpon>201803170853368_InitialDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803191115107_AddOriginalPriceForProductTable.cs" />
+    <Compile Include="Migrations\201803191115107_AddOriginalPriceForProductTable.Designer.cs">
+      <DependentUpon>201803191115107_AddOriginalPriceForProductTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803210852139_RevenuesStatisticSP.cs" />
+    <Compile Include="Migrations\201803210852139_RevenuesStatisticSP.Designer.cs">
+      <DependentUpon>201803210852139_RevenuesStatisticSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803211007477_RevenuesStatisticSP1.cs" />
+    <Compile Include="Migrations\201803211007477_RevenuesStatisticSP1.Designer.cs">
+      <DependentUpon>201803211007477_RevenuesStatisticSP1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
@@ -113,6 +125,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803170853368_InitialDB.resx">
       <DependentUpon>201803170853368_InitialDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803191115107_AddOriginalPriceForProductTable.resx">
+      <DependentUpon>201803191115107_AddOriginalPriceForProductTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803210852139_RevenuesStatisticSP.resx">
+      <DependentUpon>201803210852139_RevenuesStatisticSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803211007477_RevenuesStatisticSP1.resx">
+      <DependentUpon>201803211007477_RevenuesStatisticSP1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
