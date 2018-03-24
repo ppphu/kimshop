@@ -1,7 +1,9 @@
 ﻿@model KimShop.Web.Infrastructure.Core.PaginationSet<KimShop.Web.Models.ProductViewModel>
 @{
     var keyWord = (string)ViewBag.keyWord;
-    ViewBag.Title = "Kết quả tìm kiếm cho từ khóa" + keyWord;
+    ViewBag.Title = "Kết quả tìm kiếm cho từ khóa: " + keyWord;
+    ViewBag.MetaKeyword = "Kết quả tìm kiếm cho từ khóa: " + keyWord;
+    ViewBag.MetaDescription = "Kết quả tìm kiếm cho từ khóa: " + keyWord;
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 

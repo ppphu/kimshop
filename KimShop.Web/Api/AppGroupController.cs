@@ -17,7 +17,7 @@ using System.Web.Script.Serialization;
 
 namespace KimShop.Web.Api
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/appGroup")]
     public class AppGroupController : ApiControllerBase
     {

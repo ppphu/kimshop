@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace KimShop.Web.Api
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {

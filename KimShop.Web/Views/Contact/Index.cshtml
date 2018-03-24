@@ -3,6 +3,12 @@
 
 @{
     ViewBag.Title = "Liên hệ";
+
+    // Trường hợp không có thông tin MetaKeyword, MetaDescription trong database cụ thể
+    // Thì hai trường này cần được điền thông tin rõ ràng.
+    ViewBag.MetaKeyword = "Liên hệ";
+    ViewBag.MetaDescription = "Thông tin liên hệ của trang Kimshop";
+
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 

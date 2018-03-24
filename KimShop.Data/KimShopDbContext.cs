@@ -9,6 +9,13 @@ namespace KimShop.Data
         public KimShopDbContext() : base("KimShopConnection")
         {
             Configuration.LazyLoadingEnabled = false;
+
+            //// Các chiến lược khởi tạo cho entity framework code first ////
+            //// Nếu không set cái nào cả thì dùng lệnh add-migration khởi tạo csdl ////
+            //Database.SetInitializer<KimShopDbContext>(new CreateDatabaseIfNotExists<KimShopDbContext>());
+            //Database.SetInitializer<KimShopDbContext>(new DropCreateDatabaseIfModelChanges<KimShopDbContext>());
+            //Database.SetInitializer<KimShopDbContext>(new DropCreateDatabaseAlways<KimShopDbContext>());
+            //Database.SetInitializer<KimShopDbContext>(new SchoolDBInitializer());
         }
 
         public DbSet<Footer> Footers { get; set; }

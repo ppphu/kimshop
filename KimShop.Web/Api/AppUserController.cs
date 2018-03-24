@@ -15,7 +15,7 @@ using System.Web.Http;
 
 namespace KimShop.Web.Api
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/appUser")]
     public class AppUserController : ApiControllerBase
     {
@@ -33,7 +33,7 @@ namespace KimShop.Web.Api
 
         [HttpGet]
         [Route("getlistpaging")]
-        //[Authorize(Roles ="ViewUser")]
+        [Authorize(Roles ="ViewUser")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
@@ -59,7 +59,7 @@ namespace KimShop.Web.Api
 
         [Route("detail/{id}")]
         [HttpGet]
-        //[Authorize(Roles = "ViewUser")]
+        [Authorize(Roles = "ViewUser")]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -82,7 +82,7 @@ namespace KimShop.Web.Api
 
         [HttpPost]
         [Route("add")]
-        //[Authorize(Roles = "AddUser")]
+        [Authorize(Roles = "AddUser")]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -136,7 +136,7 @@ namespace KimShop.Web.Api
 
         [HttpPut]
         [Route("update")]
-        //[Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -184,7 +184,7 @@ namespace KimShop.Web.Api
 
         [HttpDelete]
         [Route("delete")]
-        //[Authorize(Roles ="DeleteUser")]
+        [Authorize(Roles ="DeleteUser")]
         public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         {
             var appUser = await _userManager.FindByIdAsync(id);

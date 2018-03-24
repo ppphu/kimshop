@@ -17,8 +17,8 @@ using KimShop.Web.Infrastructure.Extensions;
 
 namespace KimShop.Web.Api
 {
+    [Authorize]   
     [RoutePrefix("api/product")]
-    //[Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize

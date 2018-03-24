@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace KimShop.Web.Api
 {
+    [Authorize]
     [RoutePrefix("api/menu")]
     public class MenuController : ApiControllerBase
     {

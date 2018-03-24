@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using KimShop.Common;
 using KimShop.Model.Models;
 using KimShop.Service;
 using KimShop.Web.Models;
@@ -34,6 +35,17 @@ namespace KimShop.Web.Controllers
             var topSaleProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
             homeViewModel.LastestProducts = lastestProductViewModel;
             homeViewModel.TopSaleProducts = topSaleProductViewModel;
+
+            try
+            {
+                homeViewModel.Title = _commonService.GetSystemConfig(Constants.HomeTitle).ValueString;
+                homeViewModel.MetaKeyword = _commonService.GetSystemConfig(Constants.HomeMetaKeyword).ValueString;
+                homeViewModel.MetaDescription = _commonService.GetSystemConfig(Constants.HomeMetaDescription).ValueString;
+            }
+            catch
+            {
+            }
+           
             return View(homeViewModel);
         }
 
