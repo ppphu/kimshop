@@ -16,6 +16,9 @@ namespace KimShop.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Get an instance of service
+            // IFeedbackService service = ServiceFactory.Get<IFeedbackService>();
         }
     }
 }

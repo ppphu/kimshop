@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
-    app.service('loginService', ['$http', '$q',  'authData','apiService','authenticationService',
-    function ($http, $q, authData, apiService, authenticationService) {
+    app.service('loginService', ['$q', '$http', 'authData', 'apiService', 'authenticationService',
+    function ($q, $http, authData, apiService, authenticationService) {
         var userInfo;
         var deferred;
 
@@ -37,12 +37,5 @@
                 authData.authenticationData.accessToken = "";
             }, null);
         };
-
-        //this.logOut = function () {
-        //    authenticationService.removeToken();
-        //    authData.authenticationData.IsAuthenticated = false;
-        //    authData.authenticationData.userName = "";
-        //};
-
     }]);
 })(angular.module('kimshop.common'));

@@ -6,7 +6,8 @@
             loginService.logOut();
             $state.go('login');
         };
-        authenticationService.init();
+        //authenticationService.init();
         $scope.authentication = authData.authenticationData;
+        $scope.sideBar = "/App/shared/views/sideBar.html";
     }
 })(angular.module('kimshop'));

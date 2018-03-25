@@ -17,9 +17,9 @@
             $http.delete(url, data).then(function (result) {
                 success(result);
             }, function (error) {
-                console.log(error.status)
-                if (error.status === '401') {
-                    notificationService.displayError('Authentication is require.');
+                console.log(error.status);
+                if (error.status === 401) {
+                    notificationService.displayError('Authentication is required.');
                 }
                 else if (failure !== null) {
                     failure(error);
@@ -32,8 +32,8 @@
             $http.put(url, data).then(function (result) {
                 success(result);
             }, function (error) {
-                console.log(error.status)
-                if (error.status === '401') {
+                console.log(error.status);
+                if (error.status === 401) {
                     notificationService.displayError('Authentication is required.');
                 }
                 else if (failure !== null) {
@@ -47,8 +47,8 @@
             $http.post(url, data).then(function (result) {
                 success(result);
             }, function (error) {
-                console.log(error.status)
-                if (error.status === '401') {
+                console.log(error.status);
+                if (error.status === 401) {
                     notificationService.displayError('Authentication is required.');
                 }
                 else if (failure !== null) {

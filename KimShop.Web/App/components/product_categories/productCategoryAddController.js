@@ -7,8 +7,9 @@
             Status: true
         };
 
-        $scope.AddProductCategory = AddProductCategory;
+        $scope.flatFolders = [];
         $scope.GetSeoTitle = GetSeoTitle;
+        $scope.AddProductCategory = AddProductCategory;
 
         function GetSeoTitle() {
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
@@ -33,13 +34,46 @@
             });
         }
 
+        //function loadParentCategory() {
+        //    apiService.get('api/productCategory/getallparents', null, function (result) {
+        //        $scope.parentCategories = result.data;
+        //    }, function () {
+        //        console.log('Cannot get parent list.');
+        //    });
+        //}
+
         function loadParentCategory() {
             apiService.get('api/productCategory/getallparents', null, function (result) {
-                $scope.parentCategories = result.data;
+                console.log(result);
+                $scope.parentCategories = commonService.getTree(result.data, "ID", "ParentID");
+                $scope.parentCategories.forEach(function (item) {
+                    recur(item, 0, $scope.flatFolders);
+                });
             }, function () {
-                console.log('Cannot get parent list.');
+                console.log('Cannot get list parent');
             });
         }
+        function times(n, str) {
+            var result = '';
+            for (var i = 0; i < n; i++) {
+                result += str;
+            }
+            return result;
+        };
+        function recur(item, level, arr) {
+            arr.push({
+                Name: times(level, '–') + ' ' + item.Name,
+                ID: item.ID,
+                Level: level,
+                Indent: times(level, '–')
+            });
+            if (item.children) {
+                item.children.forEach(function (item) {
+                    recur(item, level + 1, arr);
+                });
+            }
+        };
+
         loadParentCategory();
     }
 })(angular.module('kimshop.product_categories'));

@@ -59,7 +59,7 @@ namespace KimShop.Web.Infrastructure.Extensions
             category.DisplayOrder = categoryVm.DisplayOrder;
             category.HomeFlag = categoryVm.HomeFlag;
 
-            category.CreatedDate = categoryVm.CreatedDate;
+            category.CreatedDate = DateTime.Now;
             category.CreatedBy = categoryVm.CreatedBy;
             category.UpdatedDate = categoryVm.UpdatedDate;
             category.UpdatedBy = categoryVm.UpdatedBy;
